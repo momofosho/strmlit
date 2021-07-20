@@ -220,6 +220,7 @@ def app():
             #placeholder.table(df)
         except IndexError:
             pass
+    write_file()
     PATH_TO_MY_FILE = "file.txt" #'./file.txt'
     CONTENT_FOR_MY_FILE = string
     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
@@ -229,3 +230,13 @@ def writeToFile(path, content):
   file = open(path, "w")
   file.write(content)
   file.close()
+
+def write_file():
+    print("Writing a file..")
+    try:
+        f = open("file.txt", "w")
+        for num in range(100):
+            f.write("Line " + str(num) + "\n")
+        f.close()
+    except Exception:
+        print("Could not write to file")
