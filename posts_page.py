@@ -13,6 +13,7 @@ from bokeh.models import DataTable, HTMLTemplateFormatter
 from streamlit_bokeh_events import streamlit_bokeh_events
 import ast
 import json
+from github import Github
 
 def writeToFile(path, content):
   file = open(path, "w")
@@ -228,6 +229,33 @@ def app():
     if result:
         try:
             write_file()
+            
+            g = Github("momofosho", "password")
+
+            repo = g.get_user().get_repo("strmlit")
+            all_files = []
+            contents = repo.get_contents("")
+            while contents:
+                file_content = contents.pop(0)
+                if file_content.type == "dir":
+                    contents.extend(repo.get_contents(file_content.path))
+                else:
+                    file = file_content
+                    all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+
+            with open('/tmp/file.txt', 'r') as file:
+                content = file.read()
+
+            # Upload to github
+            git_prefix = 'folder1/'
+            git_file = git_prefix + 'file.txt'
+            if git_file in all_files:
+                contents = repo.get_contents(git_file)
+                repo.update_file(contents.path, "committing files", content, contents.sha, branch="master")
+                print(git_file + ' UPDATED')
+            else:
+                repo.create_file(git_file, "committing files", content, branch="master")
+                print(git_file + ' CREATED')
             st.write(result)
             st.write(type(result))
             string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
@@ -242,5 +270,6 @@ def app():
 #     CONTENT_FOR_MY_FILE = string
 #     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
     return ls[-1]
+
 
 
