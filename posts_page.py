@@ -211,6 +211,7 @@ def app():
     if result:
         try:
             st.write(result)
+            st.write(type(result))
             string = filtered_df.iloc[json.loads(result)["INDEX_SELECT"]["data"][0]]["username"]
 #             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
             #st.write(string)
