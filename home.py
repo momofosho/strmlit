@@ -19,10 +19,22 @@ import time
 # st.write(a) #result that it returns
 
 time.sleep(15)
-PATH_TO_MY_FILE = './file.txt'
-f = open(PATH_TO_MY_FILE,"r")
-st.write(f.read())
-f.close()
+# PATH_TO_MY_FILE = './file.txt'
+# f = open(PATH_TO_MY_FILE,"r")
+# st.write(f.read())
+# f.close()
+
+read_file()
+
+def read_file():
+    print("Now reading the file..")
+    try:
+        f = open("./file.txt", "r")
+        for line in f.readlines():
+            st.write(line)
+        f.close()
+    except Exception:
+        st.write("Could not read to file")
 
 
 # st.title('Home')
