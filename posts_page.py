@@ -220,7 +220,7 @@ def app():
             #placeholder.table(df)
         except IndexError:
             pass
-    PATH_TO_MY_FILE = './file.txt'
+    PATH_TO_MY_FILE = "file.txt" #'./file.txt'
     CONTENT_FOR_MY_FILE = string
     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
     return ls[-1]
