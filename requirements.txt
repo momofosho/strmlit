@@ -3,3 +3,4 @@ google-cloud-firestore
 bokeh
 streamlit-bokeh-events
 pygithub
+wordcloud
