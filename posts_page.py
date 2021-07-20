@@ -135,15 +135,15 @@ def app():
             for col in comments_df: 
                 comments_df[col] = comments_df[col].fillna('NA')
         if (filtered_df.empty == False and comments_df.empty == False):
-            print(comments_df.head(5))
-            print(type(comments_df))
-            print(filtered_df)
+#             print(comments_df.head(5))
+#             print(type(comments_df))
+#             print(filtered_df)
             filtered_df["engagement_comments"] = filtered_df["engagement_comments"].astype(str)
-            print(filtered_df)
+#             print(filtered_df)
             comments_df["engagement_comments"] = comments_df["engagement_comments"].astype(str)
 
             filtered_df = pd.merge(comments_df,filtered_df, how = 'inner')
-            print(filtered_df)
+#             print(filtered_df)
 
         
             
