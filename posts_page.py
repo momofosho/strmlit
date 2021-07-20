@@ -15,20 +15,20 @@ import ast
 import json
 from github import Github
 
-def writeToFile(path, content):
-  file = open(path, "w")
-  file.write(content)
-  file.close()
+# def writeToFile(path, content):
+#   file = open(path, "w")
+#   file.write(content)
+#   file.close()
 
-def write_file():
-    print("Writing a file..")
-    try:
-        f = open("./file.txt", "w")
-        for num in range(100):
-            f.write("Line " + str(num) + "\n")
-        f.close()
-    except Exception:
-        print("Could not write to file")
+# def write_file():
+#     print("Writing a file..")
+#     try:
+#         f = open("./file.txt", "w")
+#         for num in range(100):
+#             f.write("Line " + str(num) + "\n")
+#         f.close()
+#     except Exception:
+#         print("Could not write to file")
 
 
 def app():
@@ -208,7 +208,7 @@ def app():
     TableColumn(field="engagement_likes",title="engagement_likes", width=200),
     TableColumn(field="engagement_comments",title="engagement_comments", width=200),
     # TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template='<a href="https://share.streamlit.io/kirubhaharini/trialapp/main/home.py"><%= value %></a>'), width=500)
-    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}" onclick="alert("Hello");"><%= value %></a>'), width=500)
+    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}?username=<%= value %>" onclick="alert("Hello");"><%= value %></a>'), width=500)
     ]
     cds.selected.js_on_change(
         "indices",
@@ -228,39 +228,40 @@ def app():
     ls = ['initialise']
     if result:
         try:
-            write_file()
+#             write_file()
             
-            g = Github("momofosho", "password")
+#             g = Github("momofosho", "password")
 
-            repo = g.get_user().get_repo("strmlit")
-            all_files = []
-            contents = repo.get_contents("")
-            while contents:
-                file_content = contents.pop(0)
-                if file_content.type == "dir":
-                    contents.extend(repo.get_contents(file_content.path))
-                else:
-                    file = file_content
-                    all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+#             repo = g.get_user().get_repo("strmlit")
+#             all_files = []
+#             contents = repo.get_contents("")
+#             while contents:
+#                 file_content = contents.pop(0)
+#                 if file_content.type == "dir":
+#                     contents.extend(repo.get_contents(file_content.path))
+#                 else:
+#                     file = file_content
+#                     all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
 
-            with open('/tmp/file.txt', 'r') as file:
-                content = file.read()
+#             with open('/tmp/file.txt', 'r') as file:
+#                 content = file.read()
 
-            # Upload to github
-            git_prefix = 'folder1/'
-            git_file = git_prefix + 'file.txt'
-            if git_file in all_files:
-                contents = repo.get_contents(git_file)
-                repo.update_file(contents.path, "committing files", content, contents.sha, branch="master")
-                print(git_file + ' UPDATED')
-            else:
-                repo.create_file(git_file, "committing files", content, branch="master")
-                print(git_file + ' CREATED')
+#             # Upload to github
+#             git_prefix = 'folder1/'
+#             git_file = git_prefix + 'file.txt'
+#             if git_file in all_files:
+#                 contents = repo.get_contents(git_file)
+#                 repo.update_file(contents.path, "committing files", content, contents.sha, branch="master")
+#                 print(git_file + ' UPDATED')
+#             else:
+#                 repo.create_file(git_file, "committing files", content, branch="master")
+#                 print(git_file + ' CREATED')
+
             st.write(result)
             st.write(type(result))
             string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
 #             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
-            ls.append(string)
+#             ls.append(string)
             #st.write(string)
             #placeholder.table(df)
         except IndexError:
@@ -269,7 +270,7 @@ def app():
 #     PATH_TO_MY_FILE = "file.txt" #'./file.txt'
 #     CONTENT_FOR_MY_FILE = string
 #     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
-    return ls[-1]
+#     return ls[-1]
 
 
 
