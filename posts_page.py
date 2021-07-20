@@ -221,9 +221,9 @@ def app():
         except IndexError:
             pass
     write_file()
-    PATH_TO_MY_FILE = "file.txt" #'./file.txt'
-    CONTENT_FOR_MY_FILE = string
-    writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
+#     PATH_TO_MY_FILE = "file.txt" #'./file.txt'
+#     CONTENT_FOR_MY_FILE = string
+#     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
     return ls[-1]
 
 def writeToFile(path, content):
@@ -234,7 +234,7 @@ def writeToFile(path, content):
 def write_file():
     print("Writing a file..")
     try:
-        f = open("file.txt", "w")
+        f = open("./file.txt", "w")
         for num in range(100):
             f.write("Line " + str(num) + "\n")
         f.close()
