@@ -227,6 +227,7 @@ def app():
     ls = ['initialise']
     if result:
         try:
+            write_file()
             st.write(result)
             st.write(type(result))
             string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
@@ -236,7 +237,7 @@ def app():
             #placeholder.table(df)
         except IndexError:
             pass
-    write_file()
+    
 #     PATH_TO_MY_FILE = "file.txt" #'./file.txt'
 #     CONTENT_FOR_MY_FILE = string
 #     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
