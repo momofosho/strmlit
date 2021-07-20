@@ -10,6 +10,16 @@ import itertools
 import numpy as np
 import time
 
+
+app_state = st.experimental_get_query_params()
+default_title = app_state["username"] if "username" in app_state else ""
+title = st.text_input('Influencer Username', value = default_title)
+app_state["username"] = title
+
+st.write(st.experimental_get_query_params())
+
+
+
 # import importlib
 
 # mod = importlib.import_module('temp')
@@ -18,23 +28,23 @@ import time
 # a = mod.returnUsername()
 # st.write(a) #result that it returns
 
-time.sleep(15)
-# PATH_TO_MY_FILE = './file.txt'
-# f = open(PATH_TO_MY_FILE,"r")
-# st.write(f.read())
-# f.close()
+# time.sleep(15)
+# # PATH_TO_MY_FILE = './file.txt'
+# # f = open(PATH_TO_MY_FILE,"r")
+# # st.write(f.read())
+# # f.close()
 
-def read_file():
-    print("Now reading the file..")
-    try:
-        f = open("./file.txt", "r")
-        for line in f.readlines():
-            st.write(line)
-        f.close()
-    except Exception:
-        st.write("Could not read to file")
+# def read_file():
+#     print("Now reading the file..")
+#     try:
+#         f = open("./file.txt", "r")
+#         for line in f.readlines():
+#             st.write(line)
+#         f.close()
+#     except Exception:
+#         st.write("Could not read to file")
 
-read_file()
+# read_file()
 
 
 
