@@ -208,7 +208,7 @@ def app():
     TableColumn(field="engagement_likes",title="engagement_likes", width=200),
     TableColumn(field="engagement_comments",title="engagement_comments", width=200),
     # TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template='<a href="https://share.streamlit.io/kirubhaharini/trialapp/main/home.py"><%= value %></a>'), width=500)
-    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}"><%= value %></a>'), width=500)
+    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}" onclick="alert("Hello");"><%= value %></a>'), width=500)
     ]
     cds.selected.js_on_change(
         "indices",
