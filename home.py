@@ -14,9 +14,9 @@ import importlib
 
 mod = importlib.import_module('temp')
 
-while True:
-  a = mod.returnUsername()
-  st.write(a) #result that it returns
+
+a = mod.returnUsername()
+st.write(a) #result that it returns
 
 
 
