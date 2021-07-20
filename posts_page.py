@@ -206,7 +206,7 @@ def app():
     p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
     global string
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
-    string = '' #initializing var
+    string = 'initialise' #initializing var
     if result:
         try:
             st.write(result)
