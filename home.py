@@ -10,15 +10,19 @@ import itertools
 import numpy as np
 
 
-import importlib
+# import importlib
 
-mod = importlib.import_module('temp')
-
-
-a = mod.returnUsername()
-st.write(a) #result that it returns
+# mod = importlib.import_module('temp')
 
 
+# a = mod.returnUsername()
+# st.write(a) #result that it returns
+
+time.sleep(15)
+PATH_TO_MY_FILE = './file.txt'
+f = open(PATH_TO_MY_FILE,"r")
+st.write(f.read())
+f.close()
 
 
 # st.title('Home')
