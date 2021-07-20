@@ -177,7 +177,8 @@ def app():
 
     #converting a col into hyperlink
     #link = 'https://share.streamlit.io/kirubhaharini/streamlit-trial/main/home.py'
-    link = 'https://www.google.com.sg'
+    #link = 'https://www.google.com.sg'
+    link = 'https://share.streamlit.io/momofosho/strmlit/main/home.py'
 
 
     #######n after user clicks: - for eg:
