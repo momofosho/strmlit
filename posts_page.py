@@ -218,5 +218,16 @@ def app():
             #placeholder.table(df)
         except IndexError:
             pass
-        
+    PATH_TO_MY_FILE = './file.txt'
+    CONTENT_FOR_MY_FILE = string
+    writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
     return string
+
+def writeToFile(path, content):
+  file = open(path, "w")
+  file.write(content)
+  file.close()
+  
+  
+
+
