@@ -208,12 +208,14 @@ def app():
     global string
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
     string = 'initialise' #initializing var
+    ls = ['initialise']
     if result:
         try:
             st.write(result)
             st.write(type(result))
-            string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
-#             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+            # string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
+            string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+            ls.append(string)
             #st.write(string)
             #placeholder.table(df)
         except IndexError:
@@ -221,13 +223,9 @@ def app():
     PATH_TO_MY_FILE = './file.txt'
     CONTENT_FOR_MY_FILE = string
     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
-    return string
+    return ls[-1]
 
 def writeToFile(path, content):
   file = open(path, "w")
   file.write(content)
   file.close()
-  
-  
-
-
