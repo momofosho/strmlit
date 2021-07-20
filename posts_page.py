@@ -12,6 +12,7 @@ from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models import DataTable, HTMLTemplateFormatter
 from streamlit_bokeh_events import streamlit_bokeh_events
 import ast
+import json
 
 def app():
     
@@ -210,7 +211,8 @@ def app():
     if result:
         try:
             st.write(result)
-            string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+            string = filtered_df.iloc[json.loads(result)["INDEX_SELECT"]["data"][0]]["username"]
+#             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
             #st.write(string)
             #placeholder.table(df)
         except IndexError:
