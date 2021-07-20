@@ -24,8 +24,6 @@ time.sleep(15)
 # st.write(f.read())
 # f.close()
 
-read_file()
-
 def read_file():
     print("Now reading the file..")
     try:
@@ -35,6 +33,10 @@ def read_file():
         f.close()
     except Exception:
         st.write("Could not read to file")
+
+read_file()
+
+
 
 
 # st.title('Home')
