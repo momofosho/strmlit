@@ -118,6 +118,7 @@ st.markdown(
 )
 
 query_params = st.experimental_get_query_params()
+st.title(query_params)
 tabs = ["Hashtags", "Keywords", "Posts"]
 if "tab" in query_params:
     active_tab = query_params["tab"][0]
