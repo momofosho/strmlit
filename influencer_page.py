@@ -160,8 +160,8 @@ def app():
     placeholder.table(filtered_df)
     cds = ColumnDataSource(filtered_df)
     columns = [
-    TableColumn(field="bio",title="bio", width=200),
-    TableColumn(field="category",title="category", width=200),
+    TableColumn(field="bio",title="bio"),#, width=200),
+    TableColumn(field="category",title="category"),#, width=200),
     TableColumn(field="followers",title="followers", width=200),
     TableColumn(field="followings",title="followings", width=200),
     TableColumn(field="hashtags",title="hashtags", width=200),
