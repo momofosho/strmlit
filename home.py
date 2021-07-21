@@ -28,8 +28,11 @@ app_state["username"] = title
 # st.write(st.experimental_get_query_params())
 
 a = st.experimental_get_query_params()["username"][0]
+st.write(st.experimental_get_query_params())
+st.write(type(st.experimental_get_query_params()))
+st.write(st.experimental_get_query_params().keys())
 # a = 'monie_skin_care'
-# st.write(a) #result that it returns
+st.write(a) #result that it returns
 
 # Authenticate to Firestore with the JSON account key.
 db = firestore.Client.from_service_account_json("firestore-key.json")
