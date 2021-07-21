@@ -18,6 +18,7 @@ from github import Github
 def app():
     
     st.title('posts')
+    st.write('\U0001F1F8\U0001F1EC')
 
      # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")
