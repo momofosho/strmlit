@@ -105,7 +105,10 @@ for cap in posts_info["caption"]:
       if w not in stop_words:
           filtered_sentence.append(w)
 
-hash = filtered_sentence.index('#')
+if '#' in filtered_sentence:
+    hash = filtered_sentence.index('#')
+else:
+    hash = len(filtered_sentence)-1 #if no hashtag then just use end of the sentence
 filtered_sentence = filtered_sentence[0:hash]
 print(filtered_sentence)
 
