@@ -4,5 +4,4 @@ bokeh
 streamlit-bokeh-events
 pygithub
 wordcloud
-nltk
-nltk.download('stopwords')
+nltk==3.5
