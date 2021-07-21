@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 
 app_state = st.experimental_get_query_params()
-default_title = app_state["username"] if "username" in app_state else ""
+default_title = app_state["username"] if "username" in app_state else "none"
 title = st.text_input('Influencer Username', value = default_title)
 app_state["username"] = title
 
