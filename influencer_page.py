@@ -166,8 +166,7 @@ def app():
     TableColumn(field="followings",title="followings", width=200),
     TableColumn(field="hashtags",title="hashtags", width=200),
     TableColumn(field="posts",title="posts", width=200),
-    TableColumn(field="posts",title="posts", width=200),
-    TableColumn(field="username",title="username")#, width=200),          
+    TableColumn(field="username",title="username", width=200),          
     ]
 #     cds.selected.js_on_change(
 #         "indices",
