@@ -183,6 +183,13 @@ elif active_tab == "Keywords":
     st.pyplot()
 
 elif active_tab == "Posts":
-    st.write("If you'd like to contact me, then please don't.")
+    import plotly.express as px
+
+    df = pd.DataFrame(['skincare','health','others'])
+    df = df.rename(columns={0:'category'})
+    df['values'] = pd.DataFrame([20,4,11])
+    #st.write(df)
+    fig = px.pie(df, values='values', names='category')
+    st.plotly_chart(fig)
 else:
     st.error("Something has gone terribly wrong.")
