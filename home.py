@@ -14,8 +14,8 @@ from nltk.tokenize import word_tokenize
 import re
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-# import os
-# os.system('python -m nltk.downloader stopwords')
+import os
+os.system('python -m nltk.downloader all')
 
 
 app_state = st.experimental_get_query_params()
