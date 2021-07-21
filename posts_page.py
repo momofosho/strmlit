@@ -191,7 +191,6 @@ def app():
     columns = [
     TableColumn(field="engagement_likes",title="engagement_likes", width=200),
     TableColumn(field="engagement_comments",title="engagement_comments", width=200),
-    # TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template='<a href="https://share.streamlit.io/kirubhaharini/trialapp/main/home.py"><%= value %></a>'), width=500)
     TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}?username=<%= value %>" onclick="alert("Hello");"><%= value %></a>'), width=500)
     ]
     cds.selected.js_on_change(
@@ -206,21 +205,18 @@ def app():
         )
     )
     p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
-    global string
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
-#     string = 'initialise' #initializing var
-#     ls = ['initialise']
-#     if result:
-#         try:
-#             st.write(result)
+    string = 'initialise' #initializing var
+    if result:
+        try:
+            st.write(result)
 #             st.write(type(result))
-#             string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
-# #             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
-# #             ls.append(string)
-#             #st.write(string)
-#             #placeholder.table(df)
-#         except IndexError:
-#             pass
+            string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
+#             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+            st.write(string)
+            #placeholder.table(df)
+        except IndexError:
+            pass
    
 
 
