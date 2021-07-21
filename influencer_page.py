@@ -179,5 +179,5 @@ def app():
 #                 """
 #         )
 #     )
-    p = DataTable(source=cds, columns=columns, css_classes=["all"], aspect_ratio="auto", width=10000)#, width=500, height=5000)
+    p = DataTable(source=cds, columns=columns, css_classes=["all"], aspect_ratio="auto", width=2000)#, width=500, height=5000)
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
