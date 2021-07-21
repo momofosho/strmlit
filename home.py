@@ -95,6 +95,7 @@ with comments:
     sum = sum + len(com)
   st.write(str(sum))
 
+nltk.download('punkt')
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
  
