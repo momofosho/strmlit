@@ -155,7 +155,6 @@ def app():
         
     placeholder.table(filtered_df)
     cds = ColumnDataSource(filtered_df)
-    bio	category	followers	followings	hashtags	posts	username
     columns = [
     TableColumn(field="bio",title="bio", width=200),
     TableColumn(field="category",title="category", width=200),
