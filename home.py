@@ -32,7 +32,6 @@ st.write(st.experimental_get_query_params())
 st.write(type(st.experimental_get_query_params()))
 st.write(st.experimental_get_query_params().keys())
 # a = 'monie_skin_care'
-st.write(st.experimental_get_query_params()[['username']])
 st.write(a) #result that it returns
 
 # Authenticate to Firestore with the JSON account key.
