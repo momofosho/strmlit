@@ -7,6 +7,9 @@ import json
 import pandas as pd
 import itertools
 import numpy as np
+from bokeh.models.widgets import TableColumn
+from bokeh.models import ColumnDataSource, CustomJS
+from bokeh.models import DataTable, HTMLTemplateFormatter
 
 # def returnRes():
 #     res = 4
