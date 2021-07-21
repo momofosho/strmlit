@@ -21,18 +21,11 @@ import matplotlib.pyplot as plt
 
 
 app_state = st.experimental_get_query_params()
-default_title = app_state["username"] if "username" in app_state else "['newfacebeauty.hk']"
+default_title = app_state["username"] if "username" in app_state else ""
 title = st.text_input('Influencer Username', value = default_title)
 app_state["username"] = title
 
-# st.write(st.experimental_get_query_params())
-
-a = st.experimental_get_query_params().get('username',['nope'])[0]
-st.write(st.experimental_get_query_params())
-st.write(type(st.experimental_get_query_params()))
-st.write(st.experimental_get_query_params().keys())
-# a = 'monie_skin_care'
-st.write(a) #result that it returns
+a = st.experimental_get_query_params()["username"][0]
 
 # Authenticate to Firestore with the JSON account key.
 db = firestore.Client.from_service_account_json("firestore-key.json")
@@ -48,8 +41,8 @@ my_dict1 = { doc.id: doc.to_dict() for doc in docs }
 df1 = pd.DataFrame.from_dict(my_dict1)
 df1 = df1.transpose()
 user_info = df1[df1.username.str.contains(a)]
-st.table(df1)
-st.write(user_info)
+# st.table(df1)
+# st.write(user_info)
 
 #posts data
 for doc in documents.stream():
@@ -69,10 +62,7 @@ posts_info = posts_info.transpose()
 #st.table(posts_info)
 
 username = a
-try:
-    location = user_info['bio'][0]  #location
-except:
-    location = '-'
+location = user_info['bio'][0]  #location
 contact_details = '-'
 st.title(username)
 st.markdown(location +'\t\t'+ contact_details)
@@ -103,8 +93,7 @@ with comments:
     sum = sum + len(com)
   st.write(str(sum))
 
-# nltk.download('punkt')
-# nltk.download('stopwords')
+
 stop_words = set(stopwords.words('english'))
  
 for cap in posts_info["caption"]:
@@ -150,7 +139,7 @@ a_dash = '-'.join(a_dash.split())
 li_items = "".join(
     f"""
     <li class="nav-item">
-        <a class="nav-link{' active' if t==active_tab else ''}" href="/?username={a}&tab={t}">{t}</a>
+        <a class="nav-link{' active' if t==active_tab else ''}" href="/?username={a}&tab={t}#{a_dash}">{t}</a>
     </li>
     """
     for t in tabs
