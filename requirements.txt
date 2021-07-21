@@ -3,5 +3,5 @@ google-cloud-firestore
 bokeh
 streamlit-bokeh-events
 pygithub
+nltk
 wordcloud
-nltk==3.5
