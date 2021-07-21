@@ -154,3 +154,27 @@ def app():
 
         
     placeholder.table(filtered_df)
+    cds = ColumnDataSource(filtered_df)
+    bio	category	followers	followings	hashtags	posts	username
+    columns = [
+    TableColumn(field="bio",title="bio", width=200),
+    TableColumn(field="category",title="category", width=200),
+    TableColumn(field="followers",title="followers", width=200),
+    TableColumn(field="followings",title="followings", width=200),
+    TableColumn(field="hashtags",title="hashtags", width=200),
+    TableColumn(field="posts",title="posts", width=200),
+    TableColumn(field="posts",title="posts", width=200),
+    TableColumn(field="username",title="username", width=200),          
+    ]
+#     cds.selected.js_on_change(
+#         "indices",
+#         CustomJS(
+#                 args=dict(source=cds),
+#                 code="""
+#                 document.dispatchEvent(
+#                 new CustomEvent("INDEX_SELECT", {detail: {data: source.selected.indices}})
+#                 )
+#                 """
+#         )
+#     )
+    p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
