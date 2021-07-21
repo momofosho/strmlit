@@ -10,6 +10,7 @@ import numpy as np
 from bokeh.models.widgets import TableColumn
 from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models import DataTable, HTMLTemplateFormatter
+from streamlit_bokeh_events import streamlit_bokeh_events
 
 # def returnRes():
 #     res = 4
@@ -180,3 +181,4 @@ def app():
 #         )
 #     )
     p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
+    result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
