@@ -69,7 +69,10 @@ posts_info = posts_info.transpose()
 #st.table(posts_info)
 
 username = a
-location = user_info['bio'][0]  #location
+try:
+    location = user_info['bio'][0]  #location
+except:
+    location = '-'
 contact_details = '-'
 st.title(username)
 st.markdown(location +'\t\t'+ contact_details)
