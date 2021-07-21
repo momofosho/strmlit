@@ -13,8 +13,8 @@ from nltk.tokenize import word_tokenize
 import re
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-import os
-os.system('python -m nltk.downloader stopwords')
+# import os
+# os.system('python -m nltk.downloader stopwords')
 
 
 app_state = st.experimental_get_query_params()
@@ -94,7 +94,7 @@ with comments:
     sum = sum + len(com)
   st.write(str(sum))
 
-
+nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))
  
 for cap in posts_info["caption"]:
