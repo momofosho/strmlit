@@ -18,7 +18,6 @@ from github import Github
 def app():
     
     st.title('posts')
-    st.write('\U0001F1F8\U0001F1EC')
 
      # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")
@@ -192,7 +191,7 @@ def app():
     columns = [
     TableColumn(field="engagement_likes",title="engagement_likes", width=200),
     TableColumn(field="engagement_comments",title="engagement_comments", width=200),
-    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}?username=<%= value %>" ><%= value %>\U0001F1F8\U0001F1EC</a>'), width=500)
+    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}?username=<%= value %>" ><%= value %></a>'), width=500)
     ]
     cds.selected.js_on_change(
         "indices",
