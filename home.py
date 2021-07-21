@@ -147,7 +147,7 @@ a_dash = '-'.join(a_dash.split())
 li_items = "".join(
     f"""
     <li class="nav-item">
-        <a class="nav-link{' active' if t==active_tab else ''}" href="/?username={a}&tab={t}#{a_dash}">{t}</a>
+        <a class="nav-link{' active' if t==active_tab else ''}" href="/?username={a}&tab={t}">{t}</a>
     </li>
     """
     for t in tabs
