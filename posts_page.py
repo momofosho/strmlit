@@ -15,22 +15,6 @@ import ast
 import json
 from github import Github
 
-# def writeToFile(path, content):
-#   file = open(path, "w")
-#   file.write(content)
-#   file.close()
-
-# def write_file():
-#     print("Writing a file..")
-#     try:
-#         f = open("./file.txt", "w")
-#         for num in range(100):
-#             f.write("Line " + str(num) + "\n")
-#         f.close()
-#     except Exception:
-#         print("Could not write to file")
-
-
 def app():
     
     st.title('posts')
@@ -224,53 +208,20 @@ def app():
     p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
     global string
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
-    string = 'initialise' #initializing var
-    ls = ['initialise']
-    if result:
-        try:
-#             write_file()
-            
-#             g = Github("momofosho", "password")
-
-#             repo = g.get_user().get_repo("strmlit")
-#             all_files = []
-#             contents = repo.get_contents("")
-#             while contents:
-#                 file_content = contents.pop(0)
-#                 if file_content.type == "dir":
-#                     contents.extend(repo.get_contents(file_content.path))
-#                 else:
-#                     file = file_content
-#                     all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
-
-#             with open('/tmp/file.txt', 'r') as file:
-#                 content = file.read()
-
-#             # Upload to github
-#             git_prefix = 'folder1/'
-#             git_file = git_prefix + 'file.txt'
-#             if git_file in all_files:
-#                 contents = repo.get_contents(git_file)
-#                 repo.update_file(contents.path, "committing files", content, contents.sha, branch="master")
-#                 print(git_file + ' UPDATED')
-#             else:
-#                 repo.create_file(git_file, "committing files", content, branch="master")
-#                 print(git_file + ' CREATED')
-
-            st.write(result)
-            st.write(type(result))
-            string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
-#             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
-#             ls.append(string)
-            #st.write(string)
-            #placeholder.table(df)
-        except IndexError:
-            pass
-    
-#     PATH_TO_MY_FILE = "file.txt" #'./file.txt'
-#     CONTENT_FOR_MY_FILE = string
-#     writeToFile(PATH_TO_MY_FILE, CONTENT_FOR_MY_FILE)
-#     return ls[-1]
+#     string = 'initialise' #initializing var
+#     ls = ['initialise']
+#     if result:
+#         try:
+#             st.write(result)
+#             st.write(type(result))
+#             string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
+# #             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+# #             ls.append(string)
+#             #st.write(string)
+#             #placeholder.table(df)
+#         except IndexError:
+#             pass
+   
 
 
 
