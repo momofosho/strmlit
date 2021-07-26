@@ -47,7 +47,7 @@ def main():
 
         tabs = Tabs(tabs=[ tab1, tab2 ])
         st.write(show(tabs))
-        st.bokeh_chart(tabs)
+        st.bokeh_chart(show(tabs))
         loginSignup(state)
         state.sync()
     # state.user="test-user"
