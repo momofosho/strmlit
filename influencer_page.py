@@ -12,7 +12,7 @@ from bokeh.models.widgets import TableColumn
 from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models import DataTable, HTMLTemplateFormatter
 from streamlit_bokeh_events import streamlit_bokeh_events
-
+import ast
 
 
 import streamlit as st
@@ -85,9 +85,11 @@ def influencerspage(state):
                 if hash in df.iat[row,col]:
                     hashtag_df = hashtag_df.append(df.iloc[row,:])
         if hashtag_df.empty == False:
-            filtered_df = pd.merge(hashtag_df,filtered_df, how = 'inner')
             filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: tuple(x))
+            filtered_df = pd.merge(hashtag_df,filtered_df, how = 'inner')
+            filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: str(x))
             placeholder.table(filtered_df)
+            filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: ast.literal_eval(x))
         else:
             for col in hashtag_df: 
                 hashtag_df[col] = hashtag_df[col].fillna('NA')
@@ -129,12 +131,14 @@ def influencerspage(state):
             print(filtered_df)
 
         
-        filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: list(x))    
+        filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: str(x))    
         placeholder.table(filtered_df)
+        filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: ast.literal_eval(x)) 
 
 
-    filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: list(x))    
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: str(x))    
     placeholder.table(filtered_df)
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: ast.literal_eval(x))
     cds = ColumnDataSource(filtered_df)
     columns = [
     TableColumn(field="bio",title="bio"),# formatter = HTMLTemplateFormatter(template="""{wordWrap: ‘break-word’}<%= value %>""")),#, width=200),
