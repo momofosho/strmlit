@@ -260,24 +260,18 @@ def home(state):
 
 
 
-    from bokeh.models.widgets import Panel, Tabs
-    from bokeh.io import output_file, show
-    from bokeh.plotting import figure
+    from bokeh.io import show
+    from bokeh.models import CheckboxButtonGroup, CustomJS
 
-    output_file("slider.html")
+    LABELS = ["Hashtags", "Keywords", "Posts"]
 
-    p1 = figure(plot_width=300, plot_height=300)
-    p1.circle([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], size=20, color="navy", alpha=0.5)
-    tab1 = Panel(child=p1, title="circle")
+    checkbox_button_group = CheckboxButtonGroup(labels=LABELS, active=[0, 1])
+    checkbox_button_group.js_on_click(CustomJS(code="""
+        console.log('checkbox_button_group: active=' + this.active, this.toString())
+    """))
 
-    p2 = figure(plot_width=300, plot_height=300)
-    p2.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
-    tab2 = Panel(child=p2, title="line")
-
-    tabs = Tabs(tabs=[ tab1, tab2 ])
-
-    show(tabs)
-
+    st.bokeh_chart(checkbox_button_group)
+    #show(checkbox_button_group)
 
 
     stop_words = set(stopwords.words('english'))
