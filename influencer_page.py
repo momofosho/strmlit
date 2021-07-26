@@ -122,13 +122,13 @@ def influencerspage(state):
             for col in followers_df: 
                 followers_df[col] = followers_df[col].fillna('NA')
         if (filtered_df.empty == False and followers_df.empty == False):
-            print(followers_df)
-            print(filtered_df)
+            print("followers_df", followers_df)
+            print("filtered_df",filtered_df)
             filtered_df["followers"] = filtered_df["followers"].astype(int)
             followers_df["followers"] = followers_df["followers"].astype(int)
             filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: tuple(x))     
             filtered_df = pd.merge(followers_df,filtered_df, how = 'inner')
-            print(filtered_df)
+            print("filtered_df",filtered_df)
 
         
         filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: str(x))    
@@ -139,44 +139,30 @@ def influencerspage(state):
     filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: str(x))    
     placeholder.table(filtered_df)
     filtered_df['hashtags'] = filtered_df['hashtags'].apply(lambda x: ast.literal_eval(x))
-    cds = ColumnDataSource(filtered_df)
-    columns = [
-    TableColumn(field="bio",title="bio"),# formatter = HTMLTemplateFormatter(template="""{wordWrap: ‘break-word’}<%= value %>""")),#, width=200),
-    TableColumn(field="category",title="category"),#, width=200),
-    TableColumn(field="followers",title="followers"),#, width=200),
-    TableColumn(field="followings",title="followings"),#, width=200),
-    TableColumn(field="hashtags",title="hashtags"),#, width=200),
-    TableColumn(field="posts",title="posts"),#, width=200),
-    TableColumn(field="username",title="username"),#, width=200),          
-    ]
-#     cds.selected.js_on_change(
-#         "indices",
-#         CustomJS(
-#                 args=dict(source=cds),
-#                 code="""
-#                 document.dispatchEvent(
-#                 new CustomEvent("INDEX_SELECT", {detail: {data: source.selected.indices}})
-#                 )
-#                 """
-#         )
-#     )
-    p = DataTable(source=cds, columns=columns, css_classes=["all"], aspect_ratio="auto", width=1500)#, width=500, height=5000)
-    result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
+#     cds = ColumnDataSource(filtered_df)
+#     columns = [
+#     TableColumn(field="bio",title="bio"),# formatter = HTMLTemplateFormatter(template="""{wordWrap: ‘break-word’}<%= value %>""")),#, width=200),
+#     TableColumn(field="category",title="category"),#, width=200),
+#     TableColumn(field="followers",title="followers"),#, width=200),
+#     TableColumn(field="followings",title="followings"),#, width=200),
+#     TableColumn(field="hashtags",title="hashtags"),#, width=200),
+#     TableColumn(field="posts",title="posts"),#, width=200),
+#     TableColumn(field="username",title="username"),#, width=200),          
+#     ]
+# #     cds.selected.js_on_change(
+# #         "indices",
+# #         CustomJS(
+# #                 args=dict(source=cds),
+# #                 code="""
+# #                 document.dispatchEvent(
+# #                 new CustomEvent("INDEX_SELECT", {detail: {data: source.selected.indices}})
+# #                 )
+# #                 """
+# #         )
+# #     )
+#     p = DataTable(source=cds, columns=columns, css_classes=["all"], aspect_ratio="auto", width=1500)#, width=500, height=5000)
+#     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
 
-
-# def display_state_values(state):
-#     st.write("Input state:", state.input)
-#     st.write("Slider state:", state.slider)
-#     st.write("Radio state:", state.radio)
-#     st.write("Checkbox state:", state.checkbox)
-#     st.write("Selectbox state:", state.selectbox)
-#     st.write("Multiselect state:", state.multiselect)
-    
-#     for i in range(3):
-#         st.write(f"Value {i}:", state[f"State value {i}"])
-
-#     if st.button("Clear state"):
-#         state.clear()
 
 
 
