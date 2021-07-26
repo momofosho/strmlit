@@ -323,50 +323,73 @@ def home(state):
     # posts_info = posts_info.join(pd.DataFrame(data = {"processed caption" : np.array(filtered_sentence)}))
     # st.table(posts_info)
 
-    st.markdown(
-        '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">',
-        unsafe_allow_html=True,
-    )
+#     st.markdown(
+#         '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">',
+#         unsafe_allow_html=True,
+#     )
 
-    query_params = st.experimental_get_query_params()
-    # st.title(query_params)
-    # query_params = app_state
-    tabs = ["Hashtags", "Keywords", "Posts"]
-    if "tab" in query_params:
-        active_tab = query_params["tab"][0]
-    else:
-        active_tab = "Hashtags"
+#     query_params = st.experimental_get_query_params()
+#     # st.title(query_params)
+#     # query_params = app_state
+#     tabs = ["Hashtags", "Keywords", "Posts"]
+#     if "tab" in query_params:
+#         active_tab = query_params["tab"][0]
+#     else:
+#         active_tab = "Hashtags"
 
-    if active_tab not in tabs:
-        active_tab = "Hashtags"
+#     if active_tab not in tabs:
+#         active_tab = "Hashtags"
 
-    import string
-    a_dash = a
-    punctuations = {"_","."}
+#     import string
+#     a_dash = a
+#     punctuations = {"_","."}
 
-    for ele in a_dash:
-        if ele in punctuations:
-            a_dash = a_dash.replace(ele, " ")
-    a_dash = '-'.join(a_dash.split())
+#     for ele in a_dash:
+#         if ele in punctuations:
+#             a_dash = a_dash.replace(ele, " ")
+#     a_dash = '-'.join(a_dash.split())
 
-    li_items = "".join(
-        f"""
-        <li class="nav-item">
-            <a class="nav-link{' active' if t==active_tab else ''}" href="?username={a}&tab={t}#{a_dash}">{t}</a>
-        </li>
-        """
-        for t in tabs
-    )
-    tabs_html = f"""
-        <ul class="nav nav-tabs">
-        {li_items}
-        </ul>
-    """
+#     li_items = "".join(
+#         f"""
+#         <li class="nav-item">
+#             <a class="nav-link{' active' if t==active_tab else ''}" href="?username={a}&tab={t}#{a_dash}">{t}</a>
+#         </li>
+#         """
+#         for t in tabs
+#     )
+#     tabs_html = f"""
+#         <ul class="nav nav-tabs">
+#         {li_items}
+#         </ul>
+#     """
 
-    st.markdown(tabs_html, unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+#     st.markdown(tabs_html, unsafe_allow_html=True)
+#     st.markdown("<br>", unsafe_allow_html=True)
+    if "active_tab" not in st.session_state:
+        st.session_state.active_tab = "Hashtags"
+    
+    import numpy as np
+    if "board" not in st.session_state: #initialise
+        st.session_state.board = np.array([["Hashtags","Keywords","Posts"]]) #tabs #np.full((1, 3), ".", dtype=str)   #np.array([["."],["."],["."]])#
 
-    if active_tab == "Hashtags":
+    # Define callbacks to handle button clicks.
+    def handle_click(i, j):
+        st.session_state.active_tab = st.session_state.board[i, j]
+    # Show one button for each field.
+    for i, row in enumerate(st.session_state.board):
+        st.write("i",i,"row",row)
+        cols = st.beta_columns([0.15, 0.15, 0.15, 0.55])
+        for j, field in enumerate(row):
+            st.write("\tj",j,"field",field)
+            cols[j].button(
+                field,
+                key=f"{i}-{j}",
+                on_click=handle_click,
+                args=(i, j),
+            )
+    
+
+    if st.session_state == "Hashtags":
         flat_list = [item for sublist in posts_info['hashtags'] for item in sublist]
         flat_str = ' '.join(flat_list)
         wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(flat_str)
@@ -379,7 +402,7 @@ def home(state):
         st.pyplot()
 
 
-    elif active_tab == "Keywords":
+    elif st.session_state == "Keywords":
         filtered_str = ' '.join(filtered_sentence)
         filtered_str = re.sub(r'[^\w\s]', '', filtered_str)
         print(filtered_str)
@@ -393,7 +416,7 @@ def home(state):
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
 
-    elif active_tab == "Posts":
+    elif st.session_state == "Posts":
         import plotly.express as px
 
         df = pd.DataFrame(['skincare','health','others'])
