@@ -239,18 +239,24 @@ def home(state):
         for com in posts_info['comments']:
             sum = sum + len(com)
         st.write(int(sum))
-
+        
+    
     
     st.write("Likes + Comments related to")
     hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
-#     col = df1.columns.get_loc("hashtags")
-
-#     hashtag_df = pd.DataFrame()
     hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
         options=hashtag_list
     )
+    likes2, comments2, d2 = st.beta_columns(3)
+#     with likes2:
+#         st.write("likes")
+#         count=0
+#         for tag in hashtag_filter_multiselect:
+            
+#             count+=
+#         st.write(int(posts_info[posts_info]['likes'].sum(skipna=True)))
 
     stop_words = set(stopwords.words('english'))
     
