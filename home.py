@@ -240,6 +240,17 @@ def home(state):
             sum = sum + len(com)
         st.write(int(sum))
 
+    
+    st.write("Likes + Comments related to")
+    hash = df1['hashtags'].tolist()
+    hash = list(itertools.chain.from_iterable(hash))
+#     col = df1.columns.get_loc("hashtags")
+
+#     hashtag_df = pd.DataFrame()
+    hashtag_filter = st.sidebar.multiselect(
+        'Select hashtag',
+        options=hash
+    )
 
     stop_words = set(stopwords.words('english'))
     
