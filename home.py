@@ -289,12 +289,12 @@ def home(state):
     radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
     radio_button_group.on_change('active', lambda attr, old, new: update())
 #     radio_button_group.on_click(write_active())
-    radio_button_group.js_on_click(CustomJS(code="""
-        console.log('radio_button_group: active=' + this.active, this.toString())
-    """))
-    st.write(radio_button_group.js_on_click(CustomJS(code="""
-        console.log('radio_button_group: active=' + this.active, this.toString())
-    """)))
+#     radio_button_group.js_on_click(CustomJS(code="""
+#         console.log('radio_button_group: active=' + this.active, this.toString())
+#     """))
+#     st.write(radio_button_group.js_on_click(CustomJS(code="""
+#         console.log('radio_button_group: active=' + this.active, this.toString())
+#     """)))
 #     radio_button_group.on_change('active', lambda attr, old, new: update())
     
     st.bokeh_chart(radio_button_group)
