@@ -69,7 +69,7 @@ def main():
             )
             return bokeh.models.Panel(child=column, title="Tables")
 
-            def graphs():
+        def graphs():
             chart = bokeh.plotting.figure(sizing_mode="stretch_width", height=400)
             chart.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
 
