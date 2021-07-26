@@ -190,13 +190,13 @@ def home(state):
         # st.markdown(s, unsafe_allow_html=True)
         # bookmark.button("testing")
     else:
-        st.write("bookmarked is false")
+#         st.write("bookmarked is false")
         # st.write(bookmark_list)
         if html_esc_user in bookmark_list:
             user_saved_list = bookmark_list[html_esc_user]
             if html_esc_query in user_saved_list:
                 db.child(html_esc_user).child(html_esc_query).remove()
-                st.error("Removed from bookmarks")
+                st.success("Removed from bookmarks")
         # s = f"""
         # <style>
         # div.stButton > button:first-child {{ border: 5px solid {primaryColor}; border-radius:20px 20px 20px 20px; }}
@@ -214,8 +214,8 @@ def home(state):
     # """
     # st.markdown(s, unsafe_allow_html=True)
 
-    posts, followers, following, likes, comments = st.beta_columns(5)
-
+    posts, followers, following,  = st.beta_columns(3)
+    likes, comments = st.beta_columns(2)
     with posts:
         st.write("posts")
         st.write(str(user_info['posts'][0]))
