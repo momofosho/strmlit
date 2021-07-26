@@ -251,7 +251,7 @@ def home(state):
     )
     
     pattern = '|'.join(hashtag_filter_multiselect)
-    st.write(df1.loc[df1.a.str.contains(pattern)])
+    st.write(df1.loc[df1.hashtags.str.contains(pattern)])
     
     
 #     st.write(df1[df1[any(tag in "hashtags" for tag in hashtag_filter_multiselect)]])
