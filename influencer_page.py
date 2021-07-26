@@ -20,7 +20,7 @@ import sessionstate
 from streamlit.hashing import _CodeHasher
 def influencerspage(state):
 
-#     st.write(state.user)
+    st.write(state.user)
     st.title('influencers:')
     # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")  
@@ -41,8 +41,7 @@ def influencerspage(state):
    # df['location'] = df['location'].astype(str)
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
-    
-    df['hashtags'] = df['hashtags'].apply(lambda x: list(x))
+    df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
 
 
 
@@ -79,7 +78,7 @@ def influencerspage(state):
         options=hash
     )
     #apply filter
-    filtered_df['hashtags'] = filtered_df['hashtags'].apply(list)
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
     if state.hashtag_filter:
         for hash in state.hashtag_filter:
             for row in range((df.shape)[0]): 
@@ -215,7 +214,7 @@ def app():
    # df['location'] = df['location'].astype(str)
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
-    df['hashtags'] = df['hashtags'].apply(lambda x: list(x))
+    df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
 
 
     filtered_df = df
@@ -232,7 +231,7 @@ def app():
         options=hash
     )
     #apply filter
-    filtered_df['hashtags'] = filtered_df['hashtags'].apply(list)
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
     if hashtag_filter:
         for hash in hashtag_filter:
             for row in range((df.shape)[0]): 
