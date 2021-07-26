@@ -6,3 +6,5 @@ pygithub
 nltk
 wordcloud
 plotly
+pyrebase
+firebase-admin
