@@ -284,7 +284,7 @@ def home(state):
     stwrite = st.empty()
 
     def write_active():
-        stwrite.write(radio_button_group.active)
+        stwrite.write("ASDFASDFASDFSASDF",radio_button_group.active)
     radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
     radio_button_group.on_click(write_active())
     radio_button_group.js_on_click(CustomJS(code="""
