@@ -242,7 +242,7 @@ def home(state):
 
     
     st.write("Likes + Comments related to")
-    hash = df1[df1["username"==state.query_username]]['hashtags'].tolist()
+    hash = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hash = list(itertools.chain.from_iterable(hash))
 #     col = df1.columns.get_loc("hashtags")
 
