@@ -279,7 +279,7 @@ def home(state):
     from bokeh.io import show
     from bokeh.models import CustomJS, RadioButtonGroup
 
-    LABELS = ["Option 1", "Option 2", "Option 3"]
+    LABELS = ["Hashtags", "Keywords", "Posts"]
 
     radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
     radio_button_group.js_on_click(CustomJS(code="""
@@ -287,6 +287,7 @@ def home(state):
     """))
 
     st.bokeh_chart(radio_button_group)
+    st.write(radio_button_group.active)
     
 
 
