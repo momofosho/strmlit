@@ -31,81 +31,81 @@ def main():
         state.user = False
 
     if not state.user:
-        from bokeh.models.widgets import Panel, Tabs
-        from bokeh.io import output_file, show
-        from bokeh.plotting import figure
+# #         from bokeh.models.widgets import Panel, Tabs
+# #         from bokeh.io import output_file, show
+# #         from bokeh.plotting import figure
         
         
-#         import datetime
-#         import random
+# # #         import datetime
+# # #         import random
 
-#         import bokeh
-#         import bokeh.layouts
-        import bokeh.models
-#         import bokeh.plotting
-# #         import markdown
-#         import pandas as pd
-#         import streamlit as st
+# # #         import bokeh
+# # #         import bokeh.layouts
+# #         import bokeh.models
+# # #         import bokeh.plotting
+# # # #         import markdown
+# # #         import pandas as pd
+# # #         import streamlit as st
         
-#         def results():
-#             N = 10
-#             data = dict(
-#                 dates=[datetime.date(2014, 3, i + 1) for i in range(N)] * 100,
-#                 downloads=[random.randint(0, 100) for i in range(N)] * 100,
-#             )
-#             source = bokeh.models.ColumnDataSource(data)
+# # #         def results():
+# # #             N = 10
+# # #             data = dict(
+# # #                 dates=[datetime.date(2014, 3, i + 1) for i in range(N)] * 100,
+# # #                 downloads=[random.randint(0, 100) for i in range(N)] * 100,
+# # #             )
+# # #             source = bokeh.models.ColumnDataSource(data)
 
-#             columns = [
-#                 bokeh.models.widgets.TableColumn(
-#                     field="dates", title="Date", formatter=bokeh.models.widgets.DateFormatter()
-#                 ),
-#                 bokeh.models.widgets.TableColumn(field="downloads", title="Downloads"),
-#             ]
-#             data_table = bokeh.models.widgets.DataTable(
-#                 source=source, columns=columns, height=280, sizing_mode="stretch_width"
-#             )
-#             column = bokeh.layouts.Column(
-#                 children=[data_table], sizing_mode="stretch_width"
-#             )
-#             return bokeh.models.Panel(child=column, title="Tables")
+# # #             columns = [
+# # #                 bokeh.models.widgets.TableColumn(
+# # #                     field="dates", title="Date", formatter=bokeh.models.widgets.DateFormatter()
+# # #                 ),
+# # #                 bokeh.models.widgets.TableColumn(field="downloads", title="Downloads"),
+# # #             ]
+# # #             data_table = bokeh.models.widgets.DataTable(
+# # #                 source=source, columns=columns, height=280, sizing_mode="stretch_width"
+# # #             )
+# # #             column = bokeh.layouts.Column(
+# # #                 children=[data_table], sizing_mode="stretch_width"
+# # #             )
+# # #             return bokeh.models.Panel(child=column, title="Tables")
 
-#         def graphs():
-#             chart = bokeh.plotting.figure(sizing_mode="stretch_width", height=400)
-#             chart.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
+# # #         def graphs():
+# # #             chart = bokeh.plotting.figure(sizing_mode="stretch_width", height=400)
+# # #             chart.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
 
-#             checkbox = bokeh.models.widgets.RadioButtonGroup(labels=["Total", "By product"], active=0)
-#             if checkbox == "By product":
-#                     checkbox_group = bokeh.models.widgets.CheckboxButtonGroup(labels=["Option 1", "Option 2", "Option 3"], active=[])
+# # #             checkbox = bokeh.models.widgets.RadioButtonGroup(labels=["Total", "By product"], active=0)
+# # #             if checkbox == "By product":
+# # #                     checkbox_group = bokeh.models.widgets.CheckboxButtonGroup(labels=["Option 1", "Option 2", "Option 3"], active=[])
 
-#             column = bokeh.layouts.Column(
-#                 chart,
-#                 checkbox,
-#                 sizing_mode="stretch_width"
-#             )    
+# # #             column = bokeh.layouts.Column(
+# # #                 chart,
+# # #                 checkbox,
+# # #                 sizing_mode="stretch_width"
+# # #             )    
 
-#             return bokeh.models.Panel(child=column, title="Plotting")        
+# # #             return bokeh.models.Panel(child=column, title="Plotting")        
         
-        tabs = bokeh.models.Tabs(
-        tabs=[
-            "Asdf",
-            "asdfadsf",
-        ]
-        )
-        st.bokeh_chart(tabs)
+# #         tabs = bokeh.models.Tabs(
+# #         tabs=[
+# #             "Asdf",
+# #             "asdfadsf",
+# #         ]
+# #         )
+# #         st.bokeh_chart(tabs)
 
 
-        output_file("slider.html")
+#         output_file("slider.html")
 
-        p1 = figure(plot_width=300, plot_height=300)
-        p1.circle([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], size=20, color="navy", alpha=0.5)
-        tab1 = Panel(child=p1, title="circle")
+#         p1 = figure(plot_width=300, plot_height=300)
+#         p1.circle([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], size=20, color="navy", alpha=0.5)
+#         tab1 = Panel(child=p1, title="circle")
 
-        p2 = figure(plot_width=300, plot_height=300)
-        p2.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
-        tab2 = Panel(child=p2, title="line")
+#         p2 = figure(plot_width=300, plot_height=300)
+#         p2.line([1, 2, 3, 4, 5], [6, 7, 2, 4, 5], line_width=3, color="navy", alpha=0.5)
+#         tab2 = Panel(child=p2, title="line")
 
-        tabs = Tabs(tabs=[ tab1, tab2 ])
-        show(tabs)
+#         tabs = Tabs(tabs=[ tab1, tab2 ])
+#         show(tabs)
 #         st.write(show(tabs))
 #         st.bokeh_chart(show(tabs))
 #         st.bokeh_chart()
