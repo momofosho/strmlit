@@ -215,30 +215,30 @@ def home(state):
     # st.markdown(s, unsafe_allow_html=True)
 
     posts, followers, following,  = st.beta_columns(3)
-    likes, comments = st.beta_columns([2,1])
+    likes, comments = st.beta_columns([1,1])
     with posts:
         st.write("posts")
-        st.write(str(user_info['posts'][0]))
+        st.write(int(user_info['posts'][0]))
 
 
     with followers:
         st.write("followers")
-        st.write(str(user_info['followers'][0]))
+        st.write(int(user_info['followers'][0]))
 
     with following:
         st.write("following")
-        st.write(str(user_info['followings'][0]))
+        st.write(int(user_info['followings'][0]))
 
     with likes:
         st.write("likes")
-        st.write(str(posts_info['likes'].sum(skipna=True)))
+        st.write(int(posts_info['likes'].sum(skipna=True)))
 
     with comments:
         st.write("comments")
         sum =0
         for com in posts_info['comments']:
             sum = sum + len(com)
-        st.write(str(sum))
+        st.write(int(sum))
 
 
     stop_words = set(stopwords.words('english'))
