@@ -260,45 +260,45 @@ def home(state):
 
 
 
-    from bokeh.io import show
-    from bokeh.models import CheckboxButtonGroup, CustomJS
+#     from bokeh.io import show
+#     from bokeh.models import CheckboxButtonGroup, CustomJS
 
-    LABELS = ["Hashtags", "Keywords", "Posts"]
+#     LABELS = ["Hashtags", "Keywords", "Posts"]
 
-    checkbox_button_group = CheckboxButtonGroup(labels=LABELS, active=[0, 1])
-    checkbox_button_group.js_on_click(CustomJS(code="""
-        console.log('checkbox_button_group: active=' + this.active, this.toString())
-    """))
-
-    st.bokeh_chart(checkbox_button_group)
-    #show(checkbox_button_group)
-    
-    
-    
-    
-    from bokeh.io import show
-    from bokeh.models import CustomJS, RadioButtonGroup
-
-    LABELS = ["Hashtags", "Keywords", "Posts"]
-    
-    stwrite = st.empty()
-
-#     def write_active():
-#         stringwrite = "ASDFASDFASDFSASDF"+str(radio_button_group.active)
-#         stwrite.write(stringwrite)
-    radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
-    radio_button_group.on_change('active', lambda attr, old, new: update())
-#     radio_button_group.on_click(write_active())
-#     radio_button_group.js_on_click(CustomJS(code="""
-#         console.log('radio_button_group: active=' + this.active, this.toString())
+#     checkbox_button_group = CheckboxButtonGroup(labels=LABELS, active=[0, 1])
+#     checkbox_button_group.js_on_click(CustomJS(code="""
+#         console.log('checkbox_button_group: active=' + this.active, this.toString())
 #     """))
-#     st.write(radio_button_group.js_on_click(CustomJS(code="""
-#         console.log('radio_button_group: active=' + this.active, this.toString())
-#     """)))
-#     radio_button_group.on_change('active', lambda attr, old, new: update())
+
+#     st.bokeh_chart(checkbox_button_group)
+#     #show(checkbox_button_group)
     
-    st.bokeh_chart(radio_button_group)
-    stwrite.write(radio_button_group.active)
+    
+    
+    
+#     from bokeh.io import show
+#     from bokeh.models import CustomJS, RadioButtonGroup
+
+#     LABELS = ["Hashtags", "Keywords", "Posts"]
+    
+#     stwrite = st.empty()
+
+# #     def write_active():
+# #         stringwrite = "ASDFASDFASDFSASDF"+str(radio_button_group.active)
+# #         stwrite.write(stringwrite)
+#     radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
+#     radio_button_group.on_change('active', lambda attr, old, new: update())
+# #     radio_button_group.on_click(write_active())
+# #     radio_button_group.js_on_click(CustomJS(code="""
+# #         console.log('radio_button_group: active=' + this.active, this.toString())
+# #     """))
+# #     st.write(radio_button_group.js_on_click(CustomJS(code="""
+# #         console.log('radio_button_group: active=' + this.active, this.toString())
+# #     """)))
+# #     radio_button_group.on_change('active', lambda attr, old, new: update())
+    
+#     st.bokeh_chart(radio_button_group)
+#     stwrite.write(radio_button_group.active)
     
 
 
