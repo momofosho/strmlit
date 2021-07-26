@@ -272,6 +272,22 @@ def home(state):
 
     st.bokeh_chart(checkbox_button_group)
     #show(checkbox_button_group)
+    
+    
+    
+    
+    from bokeh.io import show
+    from bokeh.models import CustomJS, RadioButtonGroup
+
+    LABELS = ["Option 1", "Option 2", "Option 3"]
+
+    radio_button_group = RadioButtonGroup(labels=LABELS, active=0)
+    radio_button_group.js_on_click(CustomJS(code="""
+        console.log('radio_button_group: active=' + this.active, this.toString())
+    """))
+
+    st.bokeh_chart(radio_button_group)
+    
 
 
     stop_words = set(stopwords.words('english'))
