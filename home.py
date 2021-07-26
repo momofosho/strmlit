@@ -249,12 +249,14 @@ def home(state):
         'Select hashtag',
         options=hashtag_list
     )
+    st.write(df1[df1["username"]==state.query_username && tag in "hashtags" for tag in hashtag_filter_multiselect])
     likes2, comments2, d2 = st.beta_columns(3)
 #     with likes2:
 #         st.write("likes")
 #         count=0
+#         hash_df = pd.DataFrame()
 #         for tag in hashtag_filter_multiselect:
-            
+#             hash_df
 #             count+=
 #         st.write(int(posts_info[posts_info]['likes'].sum(skipna=True)))
 
