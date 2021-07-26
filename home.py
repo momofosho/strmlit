@@ -365,7 +365,7 @@ def home(state):
 
 #     st.markdown(tabs_html, unsafe_allow_html=True)
 #     st.markdown("<br>", unsafe_allow_html=True)
-    if "active_tab" not in st.session_state:
+    if "active_tab" not in st.session_state: #default tab
         st.session_state.active_tab = "Hashtags"
     
     import numpy as np
@@ -377,10 +377,8 @@ def home(state):
         st.session_state.active_tab = st.session_state.board[i, j]
     # Show one button for each field.
     for i, row in enumerate(st.session_state.board):
-        st.write("i",i,"row",row)
         cols = st.beta_columns([0.15, 0.15, 0.15, 0.55])
         for j, field in enumerate(row):
-            st.write("\tj",j,"field",field)
             cols[j].button(
                 field,
                 key=f"{i}-{j}",
