@@ -389,7 +389,7 @@ def home(state):
             )
     
 
-    if st.session_state == "Hashtags":
+    if st.session_state.active_tab == "Hashtags":
         flat_list = [item for sublist in posts_info['hashtags'] for item in sublist]
         flat_str = ' '.join(flat_list)
         wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(flat_str)
@@ -402,7 +402,7 @@ def home(state):
         st.pyplot()
 
 
-    elif st.session_state == "Keywords":
+    elif st.session_state.active_tab == "Keywords":
         filtered_str = ' '.join(filtered_sentence)
         filtered_str = re.sub(r'[^\w\s]', '', filtered_str)
         print(filtered_str)
@@ -416,7 +416,7 @@ def home(state):
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
 
-    elif st.session_state == "Posts":
+    elif st.session_state.active_tab == "Posts":
         import plotly.express as px
 
         df = pd.DataFrame(['skincare','health','others'])
