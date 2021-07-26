@@ -88,7 +88,7 @@ def main():
         tabs = bokeh.models.Tabs(
         tabs=[
             "Asdf",
-            "asdfadsf,
+            "asdfadsf",
         ]
         )
         st.bokeh_chart(tabs)
