@@ -22,8 +22,6 @@ except ModuleNotFoundError:
     from streamlit.report_thread import get_report_ctx
     from streamlit.server.server import Server
 
-import pagedashboard
-import pagesettings
 import home
 import profile
 
