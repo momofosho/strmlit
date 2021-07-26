@@ -247,7 +247,7 @@ def home(state):
 #     col = df1.columns.get_loc("hashtags")
 
 #     hashtag_df = pd.DataFrame()
-    hashtag_filter = st.sidebar.multiselect(
+    hashtag_filter = st.multiselect(
         'Select hashtag',
         options=hash
     )
