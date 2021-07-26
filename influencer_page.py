@@ -41,7 +41,7 @@ def influencerspage(state):
    # df['location'] = df['location'].astype(str)
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
-    df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
+    df['hashtags'] = df['hashtags'].apply(lambda x: list(x))
 
 
 
