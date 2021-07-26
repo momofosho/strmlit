@@ -20,7 +20,7 @@ import sessionstate
 from streamlit.hashing import _CodeHasher
 def influencerspage(state):
 
-    st.write(state.user)
+#     st.write(state.user)
     st.title('influencers:')
     # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")  
