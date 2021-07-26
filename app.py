@@ -46,7 +46,7 @@ def main():
         tab2 = Panel(child=p2, title="line")
 
         tabs = Tabs(tabs=[ tab1, tab2 ])
-
+        st.write(tabs)
         st.bokeh_chart(tabs)
         loginSignup(state)
         state.sync()
