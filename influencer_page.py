@@ -41,6 +41,7 @@ def influencerspage(state):
    # df['location'] = df['location'].astype(str)
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
+    
     df['hashtags'] = df['hashtags'].apply(lambda x: list(x))
 
 
@@ -78,7 +79,7 @@ def influencerspage(state):
         options=hash
     )
     #apply filter
-    filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(list)
     if state.hashtag_filter:
         for hash in state.hashtag_filter:
             for row in range((df.shape)[0]): 
@@ -214,7 +215,7 @@ def app():
    # df['location'] = df['location'].astype(str)
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
-    df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
+    df['hashtags'] = df['hashtags'].apply(lambda x: list(x))
 
 
     filtered_df = df
@@ -231,7 +232,7 @@ def app():
         options=hash
     )
     #apply filter
-    filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
+    filtered_df['hashtags'] = filtered_df['hashtags'].apply(list)
     if hashtag_filter:
         for hash in hashtag_filter:
             for row in range((df.shape)[0]): 
