@@ -44,7 +44,7 @@ def influencerspage(state):
     df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
 
 
-
+    df = df[["username","bio","followers","followings","posts","category","hashtags"]]
     # st.write(len(df.columns))
 
     # # st.beta_container(df)
