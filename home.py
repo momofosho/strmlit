@@ -242,14 +242,14 @@ def home(state):
 
     
     st.write("Likes + Comments related to")
-    hash = df1[df1["username"]==state.query_username]['hashtags'].tolist()
-    hash = list(itertools.chain.from_iterable(hash))
+    hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
+    hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
 #     col = df1.columns.get_loc("hashtags")
 
 #     hashtag_df = pd.DataFrame()
-    hashtag_filter = st.multiselect(
+    hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
-        options=hash
+        options=hashtag_list
     )
 
     stop_words = set(stopwords.words('english'))
