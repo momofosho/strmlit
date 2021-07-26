@@ -377,7 +377,7 @@ def home(state):
         st.session_state.active_tab = st.session_state.board[i, j]
     # Show one button for each field.
     for i, row in enumerate(st.session_state.board):
-        cols = st.beta_columns([0.12, 0.12, 0.12, 0.64])
+        cols = st.beta_columns([0.14, 0.14, 0.14, 0.58])
         for j, field in enumerate(row):
             cols[j].button(
                 field,
