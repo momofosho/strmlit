@@ -45,11 +45,15 @@ def profile(state):
         if st.checkbox(html.unescape(i), value=True):
             data = {"name": i}
             db.child(html_esc_user).child(i).update(data)
-        else:
-            confirmremove = st.empty()
-            cancel = st.empty()
+        else:        
+            col1, col2 = st.beta_columns([1,5)
+            with col1:
+                confirmremove = st.empty()
+            with col2:
+                cancel = st.empty()
             if confirmremove.button("Confirm remove from bookmarks?"):
                 db.child(html_esc_user).child(i).remove()
+                
                 confirmremove.empty()
                 cancel.empty()
                 st.success("Removed from bookmarks")
