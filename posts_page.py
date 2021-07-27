@@ -210,7 +210,7 @@ def postspage(state):
         cols[2].write("sentiment")
         cols[3].write("username")
         for i in range(len(filtered_df)):
-            col1, col2, col3, col4 = st.beta_columns(3)
+            col1, col2, col3, col4 = st.beta_columns(4)
             # col[0] = st.write()
             with col1:
                 st.write(filtered_df["engagement_likes"][i])
