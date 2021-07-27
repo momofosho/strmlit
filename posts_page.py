@@ -220,7 +220,7 @@ def postspage(state):
 # #                 st.write(type("\U0001F610"))
                 
                 if filtered_df["sentiment_emoji"][i]=="NA":
-                    st.markdown("`filtered_df["sentiment_emoji"][i]`")
+                    st.markdown("`NA`")
                 else:
                     st.write(filtered_df["sentiment_emoji"][i])
 # #                 st.markdown("""""",a)
