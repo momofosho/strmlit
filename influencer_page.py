@@ -42,6 +42,7 @@ def influencerspage(state):
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
     df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
+    df['sentiment_emoji'] = df['sentiment_emoji'].astype(str)
 
 
     df = df[["username","bio","followers","followings","posts","category","hashtags"]]
