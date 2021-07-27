@@ -218,8 +218,11 @@ def postspage(state):
 #             col3.markdown('<p style="font-family:Courier; color:Green; font-size: 20px;">:neutral_face:</p>', unsafe_allow_html=True)
             with col3:
 # #                 st.write(type("\U0001F610"))
-                st.markdown("`:neutral_face:`")
-                st.write(filtered_df["sentiment_emoji"][i])
+                
+                if filtered_df["sentiment_emoji"][i]=="NA":
+                    st.markdown("`filtered_df["sentiment_emoji"][i]`")
+                else:
+                    st.write(filtered_df["sentiment_emoji"][i])
 # #                 st.markdown("""""",a)
 #                 emo = filtered_df["sentiment_emoji"][i]
 #                 emoji_sent = """<p style="font-family:Courier; color:Green; font-size: 20px;">{emo}</p>"""
