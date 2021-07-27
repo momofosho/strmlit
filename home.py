@@ -46,7 +46,7 @@ from streamlit.hashing import _CodeHasher
 
 def home(state):
 # def main():
-    st.beta_set_page_config(
+    st.set_page_config(
     layout="wide",
     )
     state = _get_state()
