@@ -81,7 +81,7 @@ def postspage(state):
     #Hashtag
     if "postpg_hashtag_filter" not in state: state.postpg_hashtag_filter = None
     state.postpg_hashtag_filter = st.sidebar.multiselect(
-        'Select hashtag',
+        label='Select hashtag',
         options=hash,
         default=state.postpg_hashtag_filter,
     )
