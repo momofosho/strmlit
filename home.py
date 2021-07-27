@@ -424,31 +424,39 @@ def home(state):
     
 
     if st.session_state.active_tab == "Hashtags":
-        flat_list = [item for sublist in posts_info['hashtags'] for item in sublist]
-        flat_str = ' '.join(flat_list)
-        wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(flat_str)
+        try:
+            flat_list = [item for sublist in posts_info['hashtags'] for item in sublist]
+            flat_str = ' '.join(flat_list)
+            wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(flat_str)
 
-        plt.rcParams['figure.figsize'] = (10, 10)
-        plt.title('Hashtags', fontsize = 20)
-        plt.axis('off')
-        plt.imshow(wordcloud)
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+            plt.rcParams['figure.figsize'] = (10, 10)
+            plt.title('Hashtags', fontsize = 20)
+            plt.axis('off')
+            plt.imshow(wordcloud)
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+            st.pyplot()
+        except:
+            no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no hashtags in the captions.</p>'
+            st.markdown(no_words, unsafe_allow_html=True)
 
 
     elif st.session_state.active_tab == "Keywords":
-        filtered_str = ' '.join(filtered_sentence)
-        filtered_str = re.sub(r'[^\w\s]', '', filtered_str)
-        print(filtered_str)
+        try:
+            filtered_str = ' '.join(filtered_sentence)
+            filtered_str = re.sub(r'[^\w\s]', '', filtered_str)
+            print(filtered_str)
 
-        wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(filtered_str)
+            wordcloud = WordCloud(background_color = 'lightblue', width = 1000, height = 1000, max_words = 50).generate(filtered_str)
 
-        plt.rcParams['figure.figsize'] = (10, 10)
-        plt.title('Caption Keywords', fontsize = 20)
-        plt.axis('off')
-        plt.imshow(wordcloud)
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+            plt.rcParams['figure.figsize'] = (10, 10)
+            plt.title('Caption Keywords', fontsize = 20)
+            plt.axis('off')
+            plt.imshow(wordcloud)
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+            st.pyplot()
+        except:
+            no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no captions for this post.</p>'
+            st.markdown(no_words, unsafe_allow_html=True)
 
     elif st.session_state.active_tab == "Posts":
         import plotly.express as px
