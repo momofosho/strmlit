@@ -47,7 +47,7 @@ from streamlit.hashing import _CodeHasher
 def home(state):
 # def main():
     st.beta_set_page_config(
-    layout="wide"
+    layout="wide",
     )
     state = _get_state()
 
@@ -251,7 +251,7 @@ def home(state):
     state.hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
         options=hashtag_list,
-        state.postpg_hashtag_filter
+        default=state.postpg_hashtag_filter,
     )
     
     pattern = '|'.join(state.hashtag_filter_multiselect)
