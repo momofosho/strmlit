@@ -212,7 +212,7 @@ def postspage(state):
             col1, col2, col3, col4 = st.beta_columns(4)
             # col[0] = st.write()
             with col1:
-                st.write(round(filtered_df["engagement_likes"][i],2))
+                st.write(round(double(filtered_df["engagement_likes"][i],2)))
             with col2:
                 st.write(filtered_df["engagement_comments"][i])
             with col3:
