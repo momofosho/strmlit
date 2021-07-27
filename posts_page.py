@@ -58,6 +58,7 @@ def postspage(state):
     df['engagement_comments'] = df['engagement_comments'].astype(str)
     df['engagement_likes'] = df['engagement_likes'].astype(str)
     df['username'] = df['username'].astype(str)
+    df["sentiment"] = df["sentiment_emoji"].astype(str)
    # df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
     for col in range(df.shape[1]):
             if type(df.iat[0,col])==list:
