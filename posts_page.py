@@ -204,18 +204,21 @@ def postspage(state):
         # col1, col2 = st.beta_columns(2)
         # for i, col in enumerate(cols):
         #     col.selectbox(f'Make a Selection', ['click'], key="col"+str(i))
-        cols = st.beta_columns(3)
+        cols = st.beta_columns(4)
         cols[0].write("engagement_likes")
         cols[1].write("engagement_comments")
-        cols[2].write("username")
+        cols[2].write("sentiment")
+        cols[3].write("username")
         for i in range(len(filtered_df)):
-            col1, col2, col3 = st.beta_columns(3)
+            col1, col2, col3, col4 = st.beta_columns(3)
             # col[0] = st.write()
             with col1:
                 st.write(filtered_df["engagement_likes"][i])
             with col2:
                 st.write(filtered_df["engagement_comments"][i])
             with col3:
+                st.write(filtered_df["sentiment_emoji"][i])
+            with col4:
                 if st.button(filtered_df["username"][i], key=filtered_df["username"][i]):
                     state.query_username = filtered_df["username"][i]
             # col[1] = st.write(filtered_df["engagement_comments"][i])
