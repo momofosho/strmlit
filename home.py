@@ -245,12 +245,12 @@ def home(state):
     st.write("Likes + Comments related to")
     hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
-    hashtag_filter_multiselect = st.multiselect(
+    state.hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
         options=hashtag_list
     )
     
-    pattern = '|'.join(hashtag_filter_multiselect)
+    pattern = '|'.join(state.hashtag_filter_multiselect)
 #     st.write(df1)
 #     st.write(posts_info)
     likes2, comments2, d2 = st.beta_columns(3)
@@ -263,9 +263,9 @@ def home(state):
         tot_likes=0
         for row in range((posts_info.shape)[0]):
 #             for col in range((posts_info.shape)[1]):
-                for tag in hashtag_filter_multiselect:
+                for tag in state.hashtag_filter_multiselect:
                     if tag in posts_info.iat[row,col_hashtag]:
-#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in state.hashtag_filter_multiselect):
                         tot_likes+=posts_info.iat[row,col_likes] #.sum()
                         break
         st.write(int(tot_likes))
@@ -278,9 +278,9 @@ def home(state):
         tot_comments=0
         for row in range((posts_info.shape)[0]):
 #             for col in range((posts_info.shape)[1]):
-                for tag in hashtag_filter_multiselect:
+                for tag in state.hashtag_filter_multiselect:
                     if tag in posts_info.iat[row,col_hashtag]:
-#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in state.hashtag_filter_multiselect):
                         tot_comments+=len(posts_info.iat[row,col_comments])
                         break
         st.write(int(tot_comments))
