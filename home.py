@@ -113,7 +113,7 @@ def home(state):
             return
     if not state.query_username: return
 #     st.markdown(f"""<h1 style='text-align: left; color: green;'>{username}</h1>""", unsafe_allow_html=True)
-    st.write(username)
+    st.title(username)
 
     # if state.bookmarked is None:
     #     state.bookmarked = False
