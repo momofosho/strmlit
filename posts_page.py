@@ -25,7 +25,7 @@ import sessionstate
 from streamlit.hashing import _CodeHasher
 def postspage(state):
     st.title('posts')
-
+    st.write("\U0001F610")
      # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")
 
