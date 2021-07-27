@@ -79,7 +79,7 @@ def postspage(state):
     hashtag_df = pd.DataFrame()
 
     #Hashtag
-    if "postpg_hashtag_filter" not in state: state.postpg_hashtag_filter = None
+#     if "postpg_hashtag_filter" not in state: state.postpg_hashtag_filter = None
     state.postpg_hashtag_filter = st.sidebar.multiselect(
         label='Select hashtag',
         options=hash,
