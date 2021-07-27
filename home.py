@@ -112,7 +112,7 @@ def home(state):
             state.query_username=False
             return
     if not state.query_username: return
-    title.markdown(f"""<h1 style='text-align: left; color: green;'>{username}</h1>""", unsafe_allow_html=True)
+    st.markdown(f"""<h1 style='text-align: left; color: green;'>{username}</h1>""", unsafe_allow_html=True)
     
 
     # if state.bookmarked is None:
@@ -242,7 +242,7 @@ def home(state):
         
     
     
-    st.write("Likes + Comments related to")
+    st.title(likes + comments related to:)
     hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
     state.hashtag_filter_multiselect = st.multiselect(
@@ -399,6 +399,8 @@ def home(state):
 
 #     st.markdown(tabs_html, unsafe_allow_html=True)
 #     st.markdown("<br>", unsafe_allow_html=True)
+
+    st.title("dashboard")
     if "active_tab" not in st.session_state: #default tab
         st.session_state.active_tab = "Hashtags"
     
