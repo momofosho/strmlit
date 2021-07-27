@@ -132,7 +132,7 @@ def main():
         else:
         # Display the selected page with the session state
             st.sidebar.title(":floppy_disk: Page states")
-            state.page = st.sidebar.radio("Select your page", tuple(pages.keys()))
+            state.page = st.sidebar.radio("Select your page", tuple(pages.keys()), index=state.page)
             pages[state.page](state)
 
 
