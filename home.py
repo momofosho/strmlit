@@ -112,7 +112,7 @@ def home(state):
             state.query_username=False
             return
     if not state.query_username: return
-    title.markdown(f"""<h1 style='text-align: left; color: red;'>{username}</h1>""", unsafe_allow_html=True)
+    title.markdown(f"""<h1 style='text-align: left; color: green;'>{username}</h1>""", unsafe_allow_html=True)
     
 
     # if state.bookmarked is None:
