@@ -53,7 +53,7 @@ def profile(state):
                 confirmremove.empty()
                 cancel.empty()
                 st.success("Removed from bookmarks")
-            else if cancel.button("cancel"):
+            elif cancel.button("cancel"):
                 confirmremove.empty()
                 cancel.empty()
 
