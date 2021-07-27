@@ -229,16 +229,16 @@ def home(state):
         st.write("following")
         st.write(int(user_info['followings'][0]))
 
-    with likes:
-        st.write("likes")
-        st.write(int(posts_info['likes'].sum(skipna=True)))
+#     with likes:
+#         st.write("likes")
+#         st.write(int(posts_info['likes'].sum(skipna=True)))
 
-    with comments:
-        st.write("comments")
-        sum =0
-        for com in posts_info['comments']:
-            sum = sum + len(com)
-        st.write(int(sum))
+#     with comments:
+#         st.write("comments")
+#         sum =0
+#         for com in posts_info['comments']:
+#             sum = sum + len(com)
+#         st.write(int(sum))
         
     
     
