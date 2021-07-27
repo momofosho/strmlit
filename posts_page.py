@@ -215,7 +215,7 @@ def postspage(state):
                 st.write(round(float(filtered_df["engagement_likes"][i]),2))
             with col2:
                 st.write(round(float(filtered_df["engagement_comments"][i]),2))
-            col3.markdown("""<p style="font-family:Courier; color:Green; font-size: 20px;">{filtered_df["sentiment_emoji"][i]}</p>""", unsafe_allow_html=True)
+            col3.markdown('<p style="font-family:Courier; color:Green; font-size: 20px;">{filtered_df["sentiment_emoji"][i]}</p>', unsafe_allow_html=True)
 #             with col3:
 # #                 st.write(type("\U0001F610"))
 # #                 st.write(filtered_df["sentiment_emoji"][i])
