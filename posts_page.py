@@ -218,6 +218,7 @@ def postspage(state):
             with col3:
 #                 st.write(type("\U0001F610"))
                 st.write(filtered_df["sentiment_emoji"][i])
+                st.markdown("asdfad")
             with col4:
                 if st.button(filtered_df["username"][i], key=filtered_df["username"][i]):
                     state.query_username = filtered_df["username"][i]
