@@ -43,9 +43,18 @@ def profile(state):
     for i in bookmarks:
         # html_esc_query = state.query_username.replace(".", "&period;")
         if st.checkbox(html.unescape(i), value=True):
-            pass
+            data = {"name": i}
+            db.child(html_esc_user).child(i).update(data)
         else:
-            db.child(html_esc_user).child(i).remove()
-            st.error("Removed from bookmarks")
+            confirmremove = st.empty()
+            cancel = st.empty()
+            if confirmremove.button("Confirm remove from bookmarks?"):
+                db.child(html_esc_user).child(i).remove()
+                confirmremove.empty()
+                cancel.empty()
+                st.success("Removed from bookmarks")
+            else if cancel.button("cancel"):
+                confirmremove.empty()
+                cancel.empty()
 
 
