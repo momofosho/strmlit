@@ -217,8 +217,10 @@ def postspage(state):
                 st.write(round(float(filtered_df["engagement_comments"][i]),2))
             with col3:
 #                 st.write(type("\U0001F610"))
-                st.write(filtered_df["sentiment_emoji"][i])
-                st.markdown("asdfad")
+#                 st.write(filtered_df["sentiment_emoji"][i])
+#                 st.markdown("""""",a)
+                emoji_sent = """<p style="font-family:Courier; color:Green; font-size: 20px;">{filtered_df["sentiment_emoji"][i]}</p>"""
+                st.markdown(emoji_sent, unsafe_allow_html=True)
             with col4:
                 if st.button(filtered_df["username"][i], key=filtered_df["username"][i]):
                     state.query_username = filtered_df["username"][i]
