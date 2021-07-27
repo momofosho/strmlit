@@ -215,7 +215,7 @@ def postspage(state):
             with col2:
                 st.write(filtered_df["engagement_comments"][i])
             with col3:
-                if st.button(filtered_df["username"][i]):
+                if st.button(filtered_df["username"][i], key=filtered_df["username"][i]):
                     state.query_username = filtered_df["username"][i]
             # col[1] = st.write(filtered_df["engagement_comments"][i])
             # col[2] = st.button(filtered_df["username"][i])
