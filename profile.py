@@ -45,20 +45,22 @@ def profile(state):
         if st.checkbox(html.unescape(i), value=True):
             data = {"name": i}
             db.child(html_esc_user).child(i).update(data)
-        else:        
-            col1, col2 = st.beta_columns([2,3])
-            with col1:
-                confirmremove = st.empty()
-            with col2:
-                cancel = st.empty()
-            if confirmremove.button("Confirm remove from bookmarks?"):
-                db.child(html_esc_user).child(i).remove()
+        else:
+            db.child(html_esc_user).child(i).remove()
+            st.success("Removed from bookmarks")
+#             col1, col2 = st.beta_columns([2,3])
+#             with col1:
+#                 confirmremove = st.empty()
+#             with col2:
+#                 cancel = st.empty()
+#             if confirmremove.button("Confirm remove from bookmarks?"):
+#                 db.child(html_esc_user).child(i).remove()
                 
-                confirmremove.empty()
-                cancel.empty()
-                st.success("Removed from bookmarks")
-            elif cancel.button("cancel"):
-                confirmremove.empty()
-                cancel.empty()
+#                 confirmremove.empty()
+#                 cancel.empty()
+#                 st.success("Removed from bookmarks")
+#             elif cancel.button("cancel"):
+#                 confirmremove.empty()
+#                 cancel.empty()
 
 
