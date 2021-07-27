@@ -436,8 +436,9 @@ def home(state):
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.pyplot()
         except:
-            no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no hashtags in the captions.</p>'
-            st.markdown(no_words, unsafe_allow_html=True)
+            st.markdown("`There are no hashtags in the captions.`")
+#             no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no hashtags in the captions.</p>'
+#             st.markdown(no_words, unsafe_allow_html=True)
 
 
     elif st.session_state.active_tab == "Keywords":
@@ -455,8 +456,9 @@ def home(state):
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.pyplot()
         except:
-            no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no captions for this post.</p>'
-            st.markdown(no_words, unsafe_allow_html=True)
+            st.markdown("`There are no captions for this post.`")
+#             no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no captions for this post.</p>'
+#             st.markdown(no_words, unsafe_allow_html=True)
 
     elif st.session_state.active_tab == "Posts":
         import plotly.express as px
