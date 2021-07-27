@@ -79,11 +79,9 @@ def postspage(state):
     hashtag_df = pd.DataFrame()
 
     #Hashtag
-#     if "postpg_hashtag_filter" not in state: state.postpg_hashtag_filter = None
     state.postpg_hashtag_filter = st.sidebar.multiselect(
-        label='Select hashtag',
-        options=hash,
-#         default=state.postpg_hashtag_filter,
+        'Select hashtag',
+        options=hash
     )
     #apply filter
     filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
@@ -504,7 +502,3 @@ def app():
             #placeholder.table(df)
         except IndexError:
             pass
-   
-
-
-
