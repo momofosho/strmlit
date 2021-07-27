@@ -258,14 +258,29 @@ def home(state):
 #     st.write(df1[df1["username"]==state.query_username and (tag in df1["hashtags"] for tag in hashtag_filter_multiselect).any()])
     likes2, comments2, d2 = st.beta_columns(3)
     with likes2:
-        col_hashtag = df1.columns.get_loc("hashtags")
-        col_username = df1.columns.get_loc("username")
-        col_likes = df1.columns.get_loc("likes")
-        col_comments = df1.columns.get_loc("comments")
-        for row in range((df1.shape)[0]):
-            for col in range((df1.shape)[1]):
-                if any(tag in df1.iat[row,col_hashtag] for tag in hashtag_filter_multiselect) and df1.iat[row,col_username]==state.query_username:
-                    pass
+        st.write("likes")
+        col_hashtag = posts_info.columns.get_loc("hashtags")
+#         col_username = posts_info.columns.get_loc("username")
+        col_likes = posts_info.columns.get_loc("likes")
+#         col_comments = posts_info.columns.get_loc("comments")
+        tot_likes=0
+        for row in range((posts_info.shape)[0]):
+            for col in range((posts_info.shape)[1]):
+                if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+                    tot_likes+=posts_info.iat[row,col_likes].sum()
+        st.write(int(tot_likes))
+    with comments2:
+        st.write("comments")
+        col_hashtag = posts_info.columns.get_loc("hashtags")
+        #         col_username = posts_info.columns.get_loc("username")
+#         col_likes = posts_info.columns.get_loc("likes")
+        col_comments = posts_info.columns.get_loc("comments")
+        tot_comments=0
+        for row in range((posts_info.shape)[0]):
+            for col in range((posts_info.shape)[1]):
+                if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+                    tot_comments+=len(posts_info.iat[row,col_comments])
+        st.write(int(tot_comments))
 #         st.write("likes")
 #         count=0
 #         hash_df = pd.DataFrame()
