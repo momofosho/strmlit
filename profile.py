@@ -46,7 +46,7 @@ def profile(state):
             data = {"name": i}
             db.child(html_esc_user).child(i).update(data)
         else:        
-            col1, col2 = st.beta_columns([3,5])
+            col1, col2 = st.beta_columns([2,3])
             with col1:
                 confirmremove = st.empty()
             with col2:
