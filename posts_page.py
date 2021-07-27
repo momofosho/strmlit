@@ -214,7 +214,7 @@ def postspage(state):
             with col1:
                 st.write(round(float(filtered_df["engagement_likes"][i]),2))
             with col2:
-                st.write(filtered_df["engagement_comments"][i])
+                st.write(round(float(filtered_df["engagement_comments"][i]),2))
             with col3:
 #                 st.write(type("\U0001F610"))
                 st.write(filtered_df["sentiment_emoji"][i])
