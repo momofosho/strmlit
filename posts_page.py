@@ -83,7 +83,7 @@ def postspage(state):
     state.postpg_hashtag_filter = st.sidebar.multiselect(
         'Select hashtag',
         options=hash,
-        default=state.postpg_hashtag_filter
+        default=state.postpg_hashtag_filter,
     )
     #apply filter
     filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
