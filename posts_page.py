@@ -25,7 +25,6 @@ import sessionstate
 from streamlit.hashing import _CodeHasher
 def postspage(state):
     st.title('posts')
-    st.write("\U0001F610")
      # Authenticate to Firestore with the JSON account key.
     db = firestore.Client.from_service_account_json("firestore-key.json")
 
@@ -213,7 +212,7 @@ def postspage(state):
             col1, col2, col3, col4 = st.beta_columns(4)
             # col[0] = st.write()
             with col1:
-                st.write(filtered_df["engagement_likes"][i])
+                st.write(round(filtered_df["engagement_likes"][i],2))
             with col2:
                 st.write(filtered_df["engagement_comments"][i])
             with col3:
