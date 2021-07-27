@@ -266,8 +266,11 @@ def home(state):
         tot_likes=0
         for row in range((posts_info.shape)[0]):
             for col in range((posts_info.shape)[1]):
-                if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
-                    tot_likes+=posts_info.iat[row,col_likes].sum()
+                for tag in hashtag_filter_multiselect:
+                    if tag in posts_info.iat[row,col_hashtag]:
+#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+                        tot_likes+=posts_info.iat[row,col_likes].sum()
+                        break
         st.write(int(tot_likes))
     with comments2:
         st.write("comments")
@@ -278,8 +281,11 @@ def home(state):
         tot_comments=0
         for row in range((posts_info.shape)[0]):
             for col in range((posts_info.shape)[1]):
-                if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
-                    tot_comments+=len(posts_info.iat[row,col_comments])
+                for tag in hashtag_filter_multiselect:
+                    if tag in posts_info.iat[row,col_hashtag]:
+#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in hashtag_filter_multiselect):
+                        tot_comments+=len(posts_info.iat[row,col_comments])
+                        break
         st.write(int(tot_comments))
 #         st.write("likes")
 #         count=0
