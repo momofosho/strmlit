@@ -109,11 +109,6 @@ def main():
 #         st.write(show(tabs))
 #         st.bokeh_chart(show(tabs))
 #         st.bokeh_chart()
-        with st.modal(label_ok_button, label_cancel_button) as m: 
-            m.header("Hello world, input your file")
-            m.write("Asdfadsf")
-            while not f:
-                m.markdown("Waiting for your input")
         loginSignup(state)
         state.sync()
     # state.user="test-user"
