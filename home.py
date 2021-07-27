@@ -252,11 +252,20 @@ def home(state):
     
     pattern = '|'.join(hashtag_filter_multiselect)
     st.write(df1)
+    st.write(posts_info)
 #     st.write(df1.loc[df1.hashtags.str.contains(pattern)])
 #     st.write(df1[df1[any(tag in "hashtags" for tag in hashtag_filter_multiselect)]])
 #     st.write(df1[df1["username"]==state.query_username and (tag in df1["hashtags"] for tag in hashtag_filter_multiselect).any()])
     likes2, comments2, d2 = st.beta_columns(3)
-#     with likes2:
+    with likes2:
+        col_hashtag = df1.columns.get_loc("hashtags")
+        col_username = df1.columns.get_loc("username")
+        col_likes = df1.columns.get_loc("likes")
+        col_comments = df1.columns.get_loc("comments")
+        for row in range((df1.shape)[0]):
+            for col in range((df1.shape)[1]):
+                if any(tag in df1.iat[row,col_hashtag] for tag in hashtag_filter_multiselect) and df1.iat[row,col_username]==state.query_username:
+                    pass
 #         st.write("likes")
 #         count=0
 #         hash_df = pd.DataFrame()
