@@ -31,7 +31,7 @@ def influencerspage(state):
     #print(my_dict)
     df = pd.DataFrame.from_dict(my_dict)
     df = df.transpose()
-    st.write(df
+    st.write(df)
     placeholder = st.empty()
     #placeholder.dataframe(df)
     for col in df: 
