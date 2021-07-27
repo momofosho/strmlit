@@ -31,7 +31,6 @@ def influencerspage(state):
     #print(my_dict)
     df = pd.DataFrame.from_dict(my_dict)
     df = df.transpose()
-    st.write(df)
     placeholder = st.empty()
     #placeholder.dataframe(df)
     for col in df: 
@@ -43,7 +42,6 @@ def influencerspage(state):
     df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
     df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
-#     df['sentiment'] = df['sentiment_emoji'].astype(str)
 
 
     df = df[["username","bio","followers","followings","posts","category","hashtags"]] #,"sentiment"
