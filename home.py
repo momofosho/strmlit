@@ -492,9 +492,9 @@ def home(state):
         st.title("Top Locations")
         chart_data = pd.DataFrame(
 #         np.random.randn(20, 6, 3),
-        [[20,6,3]],
-        columns=["Singapore", "Istanbul", "Hong Kong"])
-        st.bar_chart(chart_data)
+        [[20,10,6,3,1]],
+        columns=["Singapore", "Istanbul", "Hong Kong", "London","Malta"])
+        st.bar_chart(chart_data,use_container_width=True)
 
     state.sync()
 
