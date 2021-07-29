@@ -487,14 +487,14 @@ def home(state):
         df['values'] = pd.DataFrame([59.7,40.3])
         #st.write(df)
         fig = px.pie(df, values='values', names='category')
-        st.plotly_chart(fig)
+        st.plotly_chart(fig,use_container_width=True)
     with location:
         st.title("Top Locations")
         chart_data = pd.DataFrame(
 #         np.random.randn(20, 6, 3),
         [[20,10,6,3,1]],
         columns=["Singapore", "Istanbul", "Hong Kong", "London","Malta"])
-        st.bar_chart(chart_data,use_container_width=True)
+        st.bar_chart(chart_data,width=20)
 
     state.sync()
 
