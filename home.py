@@ -475,6 +475,17 @@ def home(state):
         st.plotly_chart(fig)
     else:
         st.error("Something has gone terribly wrong.")
+        
+
+    
+    st.title("Gender")    
+    import plotly.express as px
+    df = pd.DataFrame(['Women','Men'])
+    df = df.rename(columns={0:'category'})
+    df['values'] = pd.DataFrame([59.7,40.3])
+    #st.write(df)
+    fig = px.pie(df, values='values', names='category')
+    st.plotly_chart(fig)
 
     state.sync()
 
