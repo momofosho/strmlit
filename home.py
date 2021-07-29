@@ -477,10 +477,10 @@ def home(state):
         st.error("Something has gone terribly wrong.")
         
 
-    st.title("User Insights")
+    st.title("user insights")
     gender, location = st.beta_columns(2)
     with gender:
-        st.title("Gender")    
+        st.title("gender")    
         import plotly.express as px
         df = pd.DataFrame(['Women','Men'])
         df = df.rename(columns={0:'category'})
@@ -489,7 +489,7 @@ def home(state):
         fig = px.pie(df, values='values', names='category')
         st.plotly_chart(fig,use_container_width=True)
     with location:
-        st.title("Top Locations")
+        st.title("top locations")
         chart_data = pd.DataFrame(
 #         np.random.randn(20, 6, 3),
         [[20,10,6,3,1]],
