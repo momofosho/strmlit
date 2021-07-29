@@ -491,7 +491,7 @@ def home(state):
     with location:
         st.title("Top Locations")
         chart_data = pd.DataFrame(
-        np.random.randn(50, 3),
+        np.random.randn(20, 6, 3),
         columns=["Singapore", "Istanbul", "Hong Kong"])
         st.bar_chart(chart_data)
 
