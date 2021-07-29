@@ -477,15 +477,23 @@ def home(state):
         st.error("Something has gone terribly wrong.")
         
 
-    
-    st.title("Gender")    
-    import plotly.express as px
-    df = pd.DataFrame(['Women','Men'])
-    df = df.rename(columns={0:'category'})
-    df['values'] = pd.DataFrame([59.7,40.3])
-    #st.write(df)
-    fig = px.pie(df, values='values', names='category')
-    st.plotly_chart(fig)
+    st.title("User Insights")
+    gender, location = st.beta_columns(2)
+    with gender:
+        st.title("Gender")    
+        import plotly.express as px
+        df = pd.DataFrame(['Women','Men'])
+        df = df.rename(columns={0:'category'})
+        df['values'] = pd.DataFrame([59.7,40.3])
+        #st.write(df)
+        fig = px.pie(df, values='values', names='category')
+        st.plotly_chart(fig)
+    with location:
+        st.title("Top Locations")
+        chart_data = pd.DataFrame(
+        np.random.randn(50, 3),
+        columns=["Singapore", "Istanbul", "Hong Kong"])
+        st.bar_chart(chart_data)
 
     state.sync()
 
