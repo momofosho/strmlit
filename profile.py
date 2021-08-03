@@ -6,7 +6,7 @@ import ast
 
 def profile(state):
     st.title("Profile")
-    current_user = str(ast.literal_eval(state.user)["email"])
+    current_user = str(ast.literal_eval(state.user)["email"]) #for now user signs in with email, so that will be how we identify them
     st.write("Name: ", current_user)
     
     #using pyrebase so user can change password if they want
