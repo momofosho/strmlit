@@ -8,6 +8,8 @@ def profile(state):
     st.title("Profile")
     current_user = str(ast.literal_eval(state.user)["email"])
     st.write("Name: ", current_user)
+    
+    #using pyrebase so user can change password if they want
     firebaseConfig = {
 
         "apiKey": "AIzaSyBHlJZLmdxtOQtM10CkOP2pNvuO81Elirg",
@@ -26,13 +28,14 @@ def profile(state):
         auth.send_password_reset_email(current_user)
         st.success("Sent email to reset password")
     
+    
+    #Allows user to see the influencers that they bookmarked. Will check firebase realtime database and display as checkboxes
     st.title("Bookmarks")
     db = firebase.database()
     bookmark_list = db.get().val()
-    # st.write(bookmark_list, type(bookmark_list))
     
-    current_user = str(ast.literal_eval(state.user)["email"])
-    html_esc_user = current_user.replace(".","&period;")
+    current_user = str(ast.literal_eval(state.user)["email"]) 
+    html_esc_user = current_user.replace(".","&period;") #the dot will lead to some problems in the naming/file structure, so just replacing it.
     
     if html_esc_user in bookmark_list:
         bookmarks = bookmark_list[html_esc_user]
@@ -42,11 +45,11 @@ def profile(state):
     import html
     for i in bookmarks:
         # html_esc_query = state.query_username.replace(".", "&period;")
-        if st.checkbox(html.unescape(i), value=True):
+        if st.checkbox(html.unescape(i), value=True): #checkbox
             data = {"name": i}
             db.child(html_esc_user).child(i).update(data)
         else:
-            db.child(html_esc_user).child(i).remove()
+            db.child(html_esc_user).child(i).remove() #remove from database if uncheck
             st.success("Removed from bookmarks")
 #             col1, col2 = st.beta_columns([2,3])
 #             with col1:
