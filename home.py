@@ -72,7 +72,8 @@ def home(state):
     #doc_id = db.collection("test5")
     my_dict = {}
     usernames = []
-    documents = db.collection(u'test6')
+#     documents = db.collection(u'test6')
+    documents = db.collection(u'eczema')
 
     #influencer data
     docs = documents.stream()
