@@ -149,6 +149,7 @@ def loginSignup(state):
             login() #calling the function
         if forgotpass.checkbox("Forgot password?"):
             password.empty()
+            title.empty()
             forgot_text.info("Enter email to reset password")
             if placeholder.button("Submit"):
                 auth.send_password_reset_email(text_email)
