@@ -216,6 +216,7 @@ def loginSignup(state):
     email = st.empty()
     password =  st.empty()
     placeholder = st.empty() #to interchange login&signup button
+    forgotpass = st.empty()
 
     text_email = email.text_input("Email")
     text_password = password.text_input("Password", type="password")
@@ -297,8 +298,18 @@ def loginSignup(state):
         return str(login)
 
     if active_tab == "Login":
-        if placeholder.button("Login", key="loginbtn"):
-            login()
+        cola, colb = st.beta_columns(2)
+        with cola:
+            if placeholder.button("Login", key="loginbtn"):
+                login()
+        with colb:
+            if forgotpass.checkbox("Forgot password?"):
+                forgot_text = st.empty()
+                password.empty()
+                st.write("Enter email to reset password")
+                if enteremail.button("Submit"):
+                    auth.send_password_reset_email(text_email)
+                    st.success("Sent email to reset password!")
             
     elif active_tab == "Signup":
         if placeholder.button("Sign up", key="signupbutton"):
