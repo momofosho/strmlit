@@ -129,8 +129,8 @@ def postspage(state):
 #             print(filtered_df)
             comments_df["engagement_comments"] = comments_df["engagement_comments"].astype(str)
             
-            st.write(comments_df.dtypes)
-            st.write(comments_df.columns)
+            print(comments_df.dtypes)
+            print(comments_df.columns)
             filtered_df = pd.merge(comments_df,filtered_df, how = 'inner')
 #             print(filtered_df)
 
