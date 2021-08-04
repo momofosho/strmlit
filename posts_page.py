@@ -211,7 +211,7 @@ def postspage(state):
                 else:
                     st.write(filtered_df["sentiment_emoji"][i])
             with col4:
-                if st.button(filtered_df["username"][i], key=filtered_df["username"][i]):
+                if st.button(filtered_df["username"][i], key=filtered_df["shortcode"][i]):
                     state.query_username = filtered_df["username"][i]
 
 
