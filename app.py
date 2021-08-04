@@ -296,17 +296,16 @@ def loginSignup(state):
 
     if active_tab == "Login":
         cola, colb = st.beta_columns(2)
-        with cola:
-            if placeholder.button("Login", key="loginbtn"):
-                login()
-        with colb:
-            if forgotpass.checkbox("Forgot password?"):
-                forgot_text = st.empty()
-                password.empty()
-                st.write("Enter email to reset password")
-                if placeholder.button("Submit"):
-                    auth.send_password_reset_email(text_email)
-                    st.success("Sent email to reset password!")
+
+        if placeholder.button("Login", key="loginbtn"):
+            login()
+        if forgotpass.checkbox("Forgot password?"):
+            forgot_text = st.empty()
+            password.empty()
+            st.write("Enter email to reset password")
+            if placeholder.button("Submit"):
+                auth.send_password_reset_email(text_email)
+                st.success("Sent email to reset password!")
             
     elif active_tab == "Signup":
         if placeholder.button("Sign up", key="signupbutton"):
