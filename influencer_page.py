@@ -26,7 +26,8 @@ def influencerspage(state):
     db = firestore.Client.from_service_account_json("firestore-key.json")  
 
     #Getting the data in firebase, putting into dataframe
-    doc_id = db.collection("test6")
+#     doc_id = db.collection("test6")
+    doc_id = db.collection("eczema")
     docs = doc_id.stream()
     my_dict = { doc.id: doc.to_dict() for doc in docs }
     df = pd.DataFrame.from_dict(my_dict)
