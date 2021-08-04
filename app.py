@@ -101,6 +101,8 @@ def loginSignup(state):
     cola, colb = st.beta_columns(2)
     with cola:
         placeholder = st.empty() #to interchange login&signup button
+    with colb:
+        st.write("test")
     forgotpass = st.empty()
 
     text_email = email.text_input("Email")
