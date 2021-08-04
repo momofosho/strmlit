@@ -98,7 +98,7 @@ def loginSignup(state):
 
     email = st.empty()
     password =  st.empty()
-    cola, colb, _, _ = st.beta_columns(4)
+    cola, colb, _ = st.beta_columns(3)
     with cola:
         placeholder = st.empty() #to interchange login&signup button
     with colb:
