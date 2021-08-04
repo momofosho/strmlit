@@ -78,7 +78,10 @@ def influencerspage(state):
         else:
             for col in hashtag_df: 
                 hashtag_df[col] = hashtag_df[col].fillna('NA')
-
+    
+#     #Custom hashtag
+#     state.custom_hash_search = st.sidebar.text_input("If you can't find the hashtag above, type in the hashtag here:")
+    
 
     ###Followers Filter###
     followers_df = pd.DataFrame()           #initialise
