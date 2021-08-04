@@ -25,7 +25,8 @@ def postspage(state):
     db = firestore.Client.from_service_account_json("firestore-key.json")
     my_dict = {}
     usernames = []
-    documents = db.collection(u'test6')
+#     documents = db.collection(u'test6')
+    documents = db.collection(u'eczema')    
     #print(documents)
     for doc in documents.stream():
       #  print(doc.id)
