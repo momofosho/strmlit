@@ -304,7 +304,7 @@ def loginSignup(state):
                 forgot_text = st.empty()
                 password.empty()
                 st.write("Enter email to reset password")
-                if enteremail.button("Submit"):
+                if placeholder.button("Submit"):
                     auth.send_password_reset_email(text_email)
                     st.success("Sent email to reset password!")
             
