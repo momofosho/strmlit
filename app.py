@@ -302,10 +302,10 @@ def loginSignup(state):
         if forgotpass.checkbox("Forgot password?"):
             forgot_text = st.empty()
             password.empty()
-            st.info("Enter email to reset password")
+            forgot_text.info("Enter email to reset password")
             if placeholder.button("Submit"):
                 auth.send_password_reset_email(text_email)
-                st.success("Sent email to reset password!")
+                forgot_text.success("Sent email to reset password!")
             
     elif active_tab == "Signup":
         if placeholder.button("Sign up", key="signupbutton"):
