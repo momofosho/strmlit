@@ -292,8 +292,8 @@ def loginSignup(state):
 
         db = firebase.database()
         # data to save
-        data = {"name": "Mortimer 'Morty' Smith"}
-        db.child("users").child("Morty").set(data)
+#         data = {"name": "Mortimer 'Morty' Smith"}
+#         db.child("users").child("Morty").set(data)
         return str(login)
 
     if active_tab == "Login":
