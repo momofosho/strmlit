@@ -468,9 +468,9 @@ def home(state):
     elif st.session_state.active_tab == "Posts":
         import plotly.express as px
 
-        df = pd.DataFrame(['skincare','health','others'])
+        df = pd.DataFrame(['skincare','health','covid','others'])
         df = df.rename(columns={0:'category'})
-        df['values'] = pd.DataFrame([20,4,11])
+        df['values'] = pd.DataFrame([20,4,6,11])
         #st.write(df)
         fig = px.pie(df, values='values', names='category')
         st.plotly_chart(fig)
