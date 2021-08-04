@@ -1,6 +1,4 @@
 import streamlit as st
-from multiapp import MultiApp
-#from apps import home, data, model # import your app modules here
 import influencer_page, posts_page
 
 import json
@@ -57,20 +55,6 @@ def main():
             options = tuple(pages.keys())
             state.page = st.sidebar.radio("Select your page", options, options.index(state.page) if state.page else 0)
             pages[state.page](state)
-
-
-    # app = MultiApp()
-    # st.markdown("""
-    # # iota influence
-    # """)
-    # # Add all your application here
-    # app.add_app("Influencers", influencer_page.app)
-    # app.add_app("Posts", posts_page.app)
-
-    # # The main app
-    # app.run()
-
-
 
     # Mandatory to avoid rollbacks with widgets, must be called at the end of your app
     state.sync()
