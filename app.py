@@ -95,7 +95,7 @@ def loginSignup(state):
     # password = make_recording_widget(st.empty)
     # placeholder = make_recording_widget(st.empty)
     # placeholder_checkbox = make_recording_widget(st.empty)
-
+    forgot_text = st.empty()
     email = st.empty()
     password =  st.empty()
     cola, colb, _ = st.beta_columns(3)
@@ -106,7 +106,7 @@ def loginSignup(state):
 
     text_email = email.text_input("Email")
     text_password = password.text_input("Password", type="password")
-    forgot_text = st.empty()
+    
 
   
     query_params = st.experimental_get_query_params()
