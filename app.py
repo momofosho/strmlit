@@ -106,7 +106,7 @@ def loginSignup(state):
 
     text_email = email.text_input("Email")
     text_password = password.text_input("Password", type="password")
-   
+    forgot_text = st.empty()
 
   
     query_params = st.experimental_get_query_params()
@@ -185,7 +185,7 @@ def loginSignup(state):
             login()
 #         with colb:
         if forgotpass.checkbox("Forgot password?"):
-            forgot_text = st.empty()
+#             forgot_text = st.empty()
             password.empty()
             forgot_text.info("Enter email to reset password")
             if placeholder.button("Submit"):
