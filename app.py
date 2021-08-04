@@ -65,6 +65,7 @@ def loginSignup(state):
     
     #st.empty() are placeholders for streamlit widgets (we use that to make things 'disappear'/replace)
     forgot_text = st.empty()
+    title = st.empty()
     email = st.empty()
     password =  st.empty()
     cola, colb, _ = st.beta_columns(3)
@@ -72,6 +73,7 @@ def loginSignup(state):
         placeholder = st.empty() #to interchange login&signup button
     with colb:
         forgotpass = st.empty() #checkbox for "forgot password"
+    title.title("iota influence")
     text_email = email.text_input("Email") #user input
     text_password = password.text_input("Password", type="password") #user input
     
