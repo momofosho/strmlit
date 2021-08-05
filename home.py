@@ -43,10 +43,8 @@ def home(state):
     # state.query_username = "ellisastore"
     a = state.query_username
 
-    # Authenticate to Firestore with the JSON account key.
+    #Firebase
     db = firestore.Client.from_service_account_json("firestore-key.json")
-
-    #doc_id = db.collection("test5")
     my_dict = {}
     usernames = []
 #     documents = db.collection(u'test6')
@@ -81,17 +79,19 @@ def home(state):
     else: location = '-'
     contact_details = '-'
     
-
-
+    
+    #Back button, title, bookmark checkbox
     back, title, bookmark = st.beta_columns([1, 3,1])
     with back:
+    #back button
         if st.button("back"):
             state.query_username=False
             return
-    if not state.query_username: return
+    if not state.query_username: return #go back to app.py
+    #title
     st.markdown(f"""<h1 style='text-align: left; color: green;'>{username}</h1>""", unsafe_allow_html=True)
 
-
+    #bookmark
     #For user to bookmark this influencer (updates firebase Realtime Database)
     firebaseConfig = {
         "apiKey": "AIzaSyBHlJZLmdxtOQtM10CkOP2pNvuO81Elirg",
@@ -122,20 +122,22 @@ def home(state):
     #streamlit checkbox widget to bookmark
     state.bookmarked = bookmark.checkbox("Bookmarked", value=db_bookmarked) #default value set to whether it is in database (previously bookmarked)
 
-    if state.bookmarked:
-        
-        # data to save
+    if state.bookmarked: #if bookmark checkbox True, add to database
         data = {"name": html_esc_query}
         db.child(html_esc_user).child(html_esc_query).update(data)
         st.success("added to bookmark")
   
-    else:
+    else: #remove from database
         if html_esc_user in bookmark_list:
             user_saved_list = bookmark_list[html_esc_user]
             if html_esc_query in user_saved_list:
                 db.child(html_esc_user).child(html_esc_query).remove()
                 st.success("Removed from bookmarks")
 
+                
+                
+                
+    #influencer stats            
     posts, followers, following,  = st.beta_columns(3)
     likes, comments, d = st.beta_columns(3)
     with posts:
@@ -150,15 +152,16 @@ def home(state):
         st.write("following")
         st.write(int(user_info['followings'][0]))
         
+    #likes and comments related to selected hashtags
     st.title("likes + comments related to:")
     hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
+    hashtag_list = list(set(hashtag_list))
     state.hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
         options=hashtag_list,
         default=state.postpg_hashtag_filter,
     )
-    
     pattern = '|'.join(state.hashtag_filter_multiselect)
     likes2, comments2, d2 = st.beta_columns(3)
     with likes2:
@@ -190,7 +193,6 @@ def home(state):
 #             for col in range((posts_info.shape)[1]):
                 for tag in state.hashtag_filter_multiselect:
                     if tag in posts_info.iat[row,col_hashtag]:
-#                 if any(tag in posts_info.iat[row,col_hashtag] for tag in state.hashtag_filter_multiselect):
                         try:
                             tot_comments+=len(posts_info.iat[row,col_comments])
                         except:
@@ -199,9 +201,10 @@ def home(state):
         st.write(int(tot_comments))
 
 
-
+        
+        
+    #Caption keywords
     stop_words = set(stopwords.words('english'))
-    
     for cap in posts_info["caption"]:
         #cap = cap.replace('.','')
         word_tokens = word_tokenize(cap)
@@ -210,7 +213,6 @@ def home(state):
         for w in word_tokens:
             if w not in stop_words:
                 filtered_sentence.append(w)
-
     if '#' in filtered_sentence:
         hash = filtered_sentence.index('#')
     else:
@@ -218,20 +220,20 @@ def home(state):
     filtered_sentence = filtered_sentence[0:hash]
     print(filtered_sentence)
 
-    
+    #Dashboard, navigation tabs
     st.title("dashboard")
     if "active_tab" not in st.session_state: #default tab
         st.session_state.active_tab = "Hashtags"
     
     import numpy as np
-    if "board" not in st.session_state: #initialise
-        st.session_state.board = np.array([["Hashtags","Keywords","Posts"]]) #tabs #np.full((1, 3), ".", dtype=str)   #np.array([["."],["."],["."]])#
+    if "tabs" not in st.session_state: #initialise
+        st.session_state.tabs = np.array([["Hashtags","Keywords","Posts"]]) 
 
     # Define callbacks to handle button clicks.
     def handle_click(i, j):
-        st.session_state.active_tab = st.session_state.board[i, j]
+        st.session_state.active_tab = st.session_state.tabs[i, j] #on button click, set "active_tab" to be respective tab
     # Show one button for each field.
-    for i, row in enumerate(st.session_state.board):
+    for i, row in enumerate(st.session_state.tabs):
         cols = st.beta_columns([0.14, 0.14, 0.14, 0.58])
         for j, field in enumerate(row):
             cols[j].button(
@@ -241,7 +243,7 @@ def home(state):
                 args=(i, j),
             )
     
-
+    #Hashtags wordcloud
     if st.session_state.active_tab == "Hashtags":
         try:
             flat_list = [item for sublist in posts_info['hashtags'] for item in sublist]
@@ -256,10 +258,8 @@ def home(state):
             st.pyplot()
         except:
             st.markdown("`There are no hashtags in the captions.`")
-#             no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no hashtags in the captions.</p>'
-#             st.markdown(no_words, unsafe_allow_html=True)
 
-
+    #Caption keywords wordcloud
     elif st.session_state.active_tab == "Keywords":
         try:
             filtered_str = ' '.join(filtered_sentence)
@@ -276,12 +276,10 @@ def home(state):
             st.pyplot()
         except:
             st.markdown("`There are no captions for this post.`")
-#             no_words = '<p style="font-family:Courier; color:Blue; font-size: 20px;">There are no captions for this post.</p>'
-#             st.markdown(no_words, unsafe_allow_html=True)
 
+    #Posts segmentation (here it is hardcoded, cos in backend we haven't run it for everyone yet)
     elif st.session_state.active_tab == "Posts":
         import plotly.express as px
-
         df = pd.DataFrame(['skincare','health','covid','others'])
         df = df.rename(columns={0:'category'})
         df['values'] = pd.DataFrame([20,4,6,11])
@@ -291,7 +289,7 @@ def home(state):
     else:
         st.error("Something has gone terribly wrong.")
         
-
+    #these are also hardcoded as we don't have access to Instagram Graph API "user insights" yet
     st.title("user insights")
     gender, location = st.beta_columns(2)
     with gender:
@@ -318,23 +316,18 @@ def home(state):
 def _get_session():
     session_id = get_report_ctx().session_id
     session_info = Server.get_current()._get_session_info(session_id)
-
     if session_info is None:
         raise RuntimeError("Couldn't get your Streamlit Session object.")
-    
     return session_info.session
-
 
 def _get_state(hash_funcs=None):
     session = _get_session()
-
     if not hasattr(session, "_custom_session_state"):
         session._custom_session_state = sessionstate._SessionState(session, hash_funcs)
-
     return session._custom_session_state
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
 
 
 
