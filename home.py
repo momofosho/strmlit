@@ -156,7 +156,7 @@ def home(state):
     st.title("likes + comments related to:")
     hashtag_list = df1[df1["username"]==state.query_username]['hashtags'].tolist()
     hashtag_list = list(itertools.chain.from_iterable(hashtag_list))
-    hashtag_list = list(set(hashtag_list))
+    hashtag_list = list(set([i.lower() for i in hashtag_list]))
     state.hashtag_filter_multiselect = st.multiselect(
         'Select hashtag',
         options=hashtag_list,
