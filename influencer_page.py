@@ -55,6 +55,7 @@ def influencerspage(state):
     #Getting all the hashtags in the table
     hash = df['hashtags'].tolist()
     hash = list(itertools.chain.from_iterable(hash))
+    hash = list(set(hash))
     col = df.columns.get_loc("hashtags")
     hashtag_df = pd.DataFrame() #initialise
     #select hashtag widget
