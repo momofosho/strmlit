@@ -173,7 +173,10 @@ def home(state):
                 for tag in state.hashtag_filter_multiselect:
                     if tag in posts_info.iat[row,col_hashtag]:
 #                 if any(tag in posts_info.iat[row,col_hashtag] for tag in state.hashtag_filter_multiselect):
-                        tot_likes+=posts_info.iat[row,col_likes] #.sum()
+                        try:
+                            tot_likes+=posts_info.iat[row,col_likes] #.sum()
+                        except:
+                            tot_likes+=0
                         break
         st.write(int(tot_likes))
     with comments2:
@@ -188,7 +191,10 @@ def home(state):
                 for tag in state.hashtag_filter_multiselect:
                     if tag in posts_info.iat[row,col_hashtag]:
 #                 if any(tag in posts_info.iat[row,col_hashtag] for tag in state.hashtag_filter_multiselect):
-                        tot_comments+=len(posts_info.iat[row,col_comments])
+                        try:
+                            tot_comments+=len(posts_info.iat[row,col_comments])
+                        except:
+                            tot_comments+=0
                         break
         st.write(int(tot_comments))
 
