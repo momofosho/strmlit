@@ -37,8 +37,8 @@ def postspage(state):
     df = pd.DataFrame.from_dict(my_dict)
     df = df.transpose() #into a dataframe
 
-    #cleaning the dataframe
-    placeholder = st.empty()
+    #cleaning the dataframe, making everything strings to avoid unhashable type errors
+#     placeholder = st.empty()
     for col in df: 
         df[col] = df[col].fillna('NA')
         column = df.columns.get_loc(col)
@@ -48,33 +48,33 @@ def postspage(state):
     df['username'] = df['username'].astype(str)
     df["sentiment"] = df["sentiment_emoji"].astype(str)
     df["time"] = df["time"].astype(str)
-   # df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
     for col in range(df.shape[1]):
             if type(df.iat[0,col])==list:
                 df[df.columns[col]] = df[df.columns[col]].apply(lambda x: tuple(x))
     df.astype(str)
-
     for row in range((df.shape)[0]):
         for col in range((df.shape)[1]):
             if df.iat[row,col] == []:
                 df.iat[row,col] = 'NA'
 
+    #this will be the df that we keep merging/filtering
     filtered_df = df
 
-    #hashtag filter
+    #Hashtag filter
+    #getting the hashtags
     hash = df['hashtags'].tolist()
     hash = list(itertools.chain.from_iterable(hash))
     hash = list(set([i.lower() for i in hash]))
     col = df.columns.get_loc("hashtags")
-
     hashtag_df = pd.DataFrame()
-
-    #Hashtag
+    
+    #hashtag multiselect widget
     state.postpg_hashtag_filter = st.sidebar.multiselect(
         label='Select hashtag',
         options=hash,
         default=state.postpg_hashtag_filter
     )
+    
     #apply filter
     filtered_df['hashtags'] = filtered_df['hashtags'].apply(tuple)
     if state.postpg_hashtag_filter:
@@ -84,14 +84,12 @@ def postspage(state):
                     hashtag_df = hashtag_df.append(df.iloc[row,:])
         if hashtag_df.empty == False:
             filtered_df = pd.merge(hashtag_df,filtered_df, how = 'inner')
-            #placeholder.table(filtered_df)
         else:
             for col in hashtag_df: 
                 hashtag_df[col] = hashtag_df[col].fillna('NA')
 
 
-
-    #engagement rate - comments
+    #engagement rate for comments slider
     comments_df = pd.DataFrame()
     state.comments = st.sidebar.slider(
         'Select engagement rate for comments',
@@ -100,13 +98,10 @@ def postspage(state):
     min_fol = state.comments[0]
     max_fol = state.comments[1]
     col = df.columns.get_loc("engagement_comments")
-    #print(col)
 
     if state.comments:
         for row in range((df.shape)[0]): 
             rate = df.iat[row,col]
-            # print(min_fol)
-            # print(max_fol)
             if rate == 'NA':
                 rate = 0
             if min_fol <= float(rate) <= max_fol:
@@ -118,25 +113,14 @@ def postspage(state):
             for col in comments_df: 
                 comments_df[col] = comments_df[col].fillna('NA')
         if (filtered_df.empty == False and comments_df.empty == False):
-#             print(comments_df.head(5))
-#             print(type(comments_df))
-#             print(filtered_df)
             filtered_df["engagement_comments"] = filtered_df["engagement_comments"].astype(str)
-#             print(filtered_df)
             comments_df["engagement_comments"] = comments_df["engagement_comments"].astype(str)
             
             print(comments_df.dtypes)
             print(comments_df.columns)
             filtered_df = pd.merge(comments_df,filtered_df, how = 'inner')
-#             print(filtered_df)
 
-        
-            
-        #placeholder.table(filtered_df)
-
-
-
-    #engagement rate - likes
+    #engagement rate for likes slider
     likes_df = pd.DataFrame()
     state.likes = st.sidebar.slider(
         'Select engagement rate for likes',
@@ -145,7 +129,6 @@ def postspage(state):
     min_fol = state.likes[0]
     max_fol = state.likes[1]
     col = df.columns.get_loc("engagement_likes")
-    #print(col)
 
     if state.likes:
         for row in range((df.shape)[0]): 
@@ -163,26 +146,11 @@ def postspage(state):
             for col in likes_df: 
                 likes_df[col] = likes_df[col].fillna('NA')
         if (filtered_df.empty == False and likes_df.empty == False):
-           # print(likes_df)
-           # print(filtered_df)
             filtered_df["engagement_likes"] = filtered_df["engagement_likes"].astype(str)
             likes_df["engagement_likes"] = likes_df["engagement_likes"].astype(str)
-
             filtered_df = pd.merge(likes_df,filtered_df, how = 'inner')
-          #  print(filtered_df)
+  
 
-        
-            
-    #     placeholder.table(filtered_df)
-    
-    # placeholder.table(filtered_df)
-    
-
-    #converting a col into hyperlink
-    #link = 'https://share.streamlit.io/kirubhaharini/streamlit-trial/main/home.py'
-    link = 'https://share.streamlit.io/momofosho/strmlit/main/home.py'
-
-    
     
  ###############################################################################################  
     #Displaying filtered_df
@@ -211,7 +179,7 @@ def postspage(state):
 
 
 ###############################################################################################
-
+    link = 'https://share.streamlit.io/momofosho/strmlit/main/home.py'
 #     ####### after user clicks: - for eg:
 #     # global result
 #     #result = 'user1'
