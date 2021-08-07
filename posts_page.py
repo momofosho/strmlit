@@ -21,30 +21,24 @@ from streamlit.hashing import _CodeHasher
 
 def postspage(state):
     st.title('posts')
-     # Authenticate to Firestore with the JSON account key.
+    #getting data from firebase
     db = firestore.Client.from_service_account_json("firestore-key.json")
     my_dict = {}
     usernames = []
 #     documents = db.collection(u'test6')
     documents = db.collection(u'eczema')    
-    #print(documents)
     for doc in documents.stream():
-      #  print(doc.id)
         usernames.append(doc.id)
         collections = documents.document(doc.id).collections()
         for collection in collections:
-            
             for doc in collection.stream():
                 my_dict[doc.id] = doc.to_dict()
 
-
-   # print(my_dict)
     df = pd.DataFrame.from_dict(my_dict)
-    df = df.transpose()
-   # df.insert(0, 'username', usernames)
+    df = df.transpose() #into a dataframe
 
+    #cleaning the dataframe
     placeholder = st.empty()
-    #placeholder.dataframe(df)
     for col in df: 
         df[col] = df[col].fillna('NA')
         column = df.columns.get_loc(col)
@@ -64,7 +58,7 @@ def postspage(state):
         for col in range((df.shape)[1]):
             if df.iat[row,col] == []:
                 df.iat[row,col] = 'NA'
-    print(df)
+
     filtered_df = df
 
     #hashtag filter
