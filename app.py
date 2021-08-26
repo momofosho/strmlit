@@ -25,7 +25,7 @@ def main():
 
     if not state.user:
         loginSignup(state)
-#         state.sync() #save state user once login/signup
+        state.sync() #save state user once login/signup
     # state.user="test-user"
     
     else:
@@ -159,7 +159,6 @@ def loginSignup(state):
     elif active_tab == "Signup":
         if placeholder.button("Sign up", key="signupbutton"):
             signUp() #calling the function
-    state.sync()
 
 
 
