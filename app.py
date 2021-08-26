@@ -135,13 +135,13 @@ def loginSignup(state):
         # auth.send_email_verification(login['idToken'])
         # #reset the password
         # auth.send_password_reset_email(email)
-        st.write("ya")
         successful=True
         print("Success ... ")
         email.empty()
         password.empty()
         placeholder.empty()
         placeholder_hyperlink.empty()
+        st.write("ya")
         return str(login)
 
     #Displaying respective buttons depending on the tab   
