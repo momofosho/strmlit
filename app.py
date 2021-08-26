@@ -25,7 +25,7 @@ def main():
 
     if not state.user:
         loginSignup(state)
-        state.sync() #save state user once login/signup
+#         state.sync() #save state user once login/signup
     # state.user="test-user"
     
     else:
