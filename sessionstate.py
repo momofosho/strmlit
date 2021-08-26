@@ -38,7 +38,7 @@ class _SessionState:
     def clear(self):
         """Clear session state and request a rerun."""
         self._state["data"].clear()
-        self._state["session"].request_rerun()
+        self._state["session"].request_rerun(self) #second "self" wasn't there originally but it seems to avoid certain error
     
     def sync(self):
         """Rerun the app with all state values up to date from the beginning to fix rollbacks."""
@@ -53,6 +53,6 @@ class _SessionState:
         elif self._state["hash"] is not None:
             if self._state["hash"] != self._state["hasher"].to_bytes(self._state["data"], None):
                 self._state["is_rerun"] = True
-                self._state["session"].request_rerun()
+                self._state["session"].request_rerun(self) #second "self" wasn't there originally but it seems to avoid certain error
 
         self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
