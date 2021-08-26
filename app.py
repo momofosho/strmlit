@@ -105,7 +105,7 @@ def loginSignup(state):
                 user = auth.create_user_with_email_and_password(text_email, text_password)
                 # user_email = text_email
                 # user_password = text_password
-                user=str(user)
+                state.user=str(user)
             except requests.HTTPError as e:
                 error_json = e.args[1]
                 error = json.loads(error_json)['error']['message']
