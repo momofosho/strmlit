@@ -51,7 +51,7 @@ def profile(state):
         else:
             db.child(html_esc_user).child(i).remove() #remove from database if uncheck
             st.success("Removed from bookmarks")
-#             col1, col2 = st.beta_columns([2,3])
+#             col1, col2 = st.columns([2,3])
 #             with col1:
 #                 confirmremove = st.empty()
 #             with col2:
