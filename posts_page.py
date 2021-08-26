@@ -157,13 +157,13 @@ def postspage(state):
     import home
     with st.beta_container():
         filtered_df
-        cols = st.beta_columns(4)
+        cols = st.columns(4)
         cols[0].write("engagement_likes")
         cols[1].write("engagement_comments")
         cols[2].write("sentiment")
         cols[3].write("username")
         for i in range(len(filtered_df)):
-            col1, col2, col3, col4 = st.beta_columns(4)
+            col1, col2, col3, col4 = st.columns(4)
             with col1:
                 st.write(round(float(filtered_df["engagement_likes"][i]),2))
             with col2:
