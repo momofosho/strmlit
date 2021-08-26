@@ -115,6 +115,7 @@ def loginSignup(state):
                 st.stop()
         successful=True
         print("Success .... ")
+        st.success("Successfully signed up!")
         email.empty()
         password.empty()
         placeholder.empty()
