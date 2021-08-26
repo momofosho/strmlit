@@ -135,6 +135,7 @@ def loginSignup(state):
         # auth.send_email_verification(login['idToken'])
         # #reset the password
         # auth.send_password_reset_email(email)
+        st.write("ya")
         successful=True
         print("Success ... ")
         email.empty()
