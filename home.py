@@ -81,7 +81,7 @@ def home(state):
     
     
     #Back button, title, bookmark checkbox
-    back, title, bookmark = st.beta_columns([1, 3,1])
+    back, title, bookmark = st.columns([1, 3,1])
     with back:
     #back button
         if st.button("back"):
@@ -138,8 +138,8 @@ def home(state):
                 
                 
     #influencer stats            
-    posts, followers, following,  = st.beta_columns(3)
-    likes, comments, d = st.beta_columns(3)
+    posts, followers, following,  = st.columns(3)
+    likes, comments, d = st.columns(3)
     with posts:
         st.write("posts")
         st.write(int(user_info['posts'][0]))
@@ -163,7 +163,7 @@ def home(state):
         default=state.postpg_hashtag_filter,
     )
     pattern = '|'.join(state.hashtag_filter_multiselect)
-    likes2, comments2, d2 = st.beta_columns(3)
+    likes2, comments2, d2 = st.columns(3)
     with likes2:
         st.write("likes")
         col_hashtag = posts_info.columns.get_loc("hashtags")
@@ -234,7 +234,7 @@ def home(state):
         st.session_state.active_tab = st.session_state.tabs[i, j] #on button click, set "active_tab" to be respective tab
     # Show one button for each field.
     for i, row in enumerate(st.session_state.tabs):
-        cols = st.beta_columns([0.14, 0.14, 0.14, 0.58])
+        cols = st.columns([0.14, 0.14, 0.14, 0.58])
         for j, field in enumerate(row):
             cols[j].button(
                 field,
@@ -291,7 +291,7 @@ def home(state):
         
     #these are also hardcoded as we don't have access to Instagram Graph API "user insights" yet
     st.title("user insights")
-    gender, location = st.beta_columns(2)
+    gender, location = st.columns(2)
     with gender:
         st.title("gender")    
         import plotly.express as px
