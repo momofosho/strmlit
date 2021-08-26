@@ -25,6 +25,7 @@ def main():
 
     if not state.user:
         loginSignup(state)
+        st.write("login ok")
         state.sync() #save state user once login/signup
     # state.user="test-user"
     
